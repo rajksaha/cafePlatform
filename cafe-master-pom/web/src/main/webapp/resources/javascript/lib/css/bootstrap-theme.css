@@ -1,0 +1,124 @@
+/*!
+ * Bootstrap v3.2.0 (http://getbootstrap.com)
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*!
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=3beb4504070f61d9a284)
+ * Config saved to config.json and https://gist.github.com/3beb4504070f61d9a284
+ */
+
+.thumbnail,
+.img-thumbnail {
+
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+
+}
+.navbar-default {
+
+}
+.navbar-default .navbar-nav > .active > a {
+
+}
+.navbar-brand,
+.navbar-nav > li > a {
+
+}
+.navbar-inverse {
+
+}
+.navbar-inverse .navbar-nav > .active > a {
+
+}
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+
+}
+.navbar-static-top,
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+
+}
+.alert {
+  padding: 5px 10px;
+}
+.alert-success {
+
+}
+.alert-info {
+
+}
+.alert-warning {
+
+}
+.alert-danger {
+
+}
+.progress {
+
+}
+.progress-bar {
+
+}
+.progress-bar-success {
+
+}
+.progress-bar-info {
+
+}
+.progress-bar-warning {
+
+}
+.progress-bar-danger {
+
+}
+.progress-bar-striped {
+
+}
+.list-group {
+
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+
+}
+.panel {
+
+}
+.panel-default > .panel-heading {
+
+}
+.panel-primary > .panel-heading {
+
+}
+.panel-success > .panel-heading {
+
+}
+.panel-info > .panel-heading {
+
+}
+.panel-warning > .panel-heading {
+
+}
+.panel-danger > .panel-heading {
+
+}
+.well {
+
+}
+
+
+.form-control-date[readonly] {
+  cursor: pointer;
+  background-color: #ffffff;
+  opacity: 1;
+}

@@ -1,0 +1,399 @@
+/*
+Theme Name: Datejs v1
+Theme URI: http://www.datejs.com/
+Description: The Datejs.com website theme.
+Version: 1
+Author: Coolite Inc.
+*/
+
+body,
+html {
+	margin:0;
+	padding:0;
+	background: white url(/images/background_header.jpg) repeat-x;
+	color: #000;
+}
+body {
+	font-family: Verdana, Helvetica, Arial;
+	font-size: 12px;
+}
+
+img {
+	border: 0px;
+}
+
+p {
+	line-height: 20px;
+}
+
+a, a:link {
+	color: blue;
+}
+
+a:visited {
+	color: purple;
+}
+
+a:hover, a:visited:hover {
+	color: red;
+}
+
+#top { 
+	margin: 0 auto;
+	height: 223px;
+	background: transparent url(/images/header_960.jpg) no-repeat top center;
+	width:960px;
+}
+
+#page_wrapper {
+	background: transparent url(/images/header.jpg) no-repeat top center;
+}
+
+#header {
+	margin:0 auto;
+}
+
+#header h1 {
+	font: bold 40px "Trebuchet MS", Helvetica, Arial;
+}
+
+#navigation {
+	text-align: right;
+	padding-top: 10px;
+}
+
+#navigation ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#navigation li{
+	display: inline;
+	margin: 0;
+	padding: 0;
+	margin-left: 24px;
+}
+
+#navigation a, #navigation a:link {
+	color: white;
+	text-decoration: none;
+}
+
+#navigation a:hover {
+	color: white;
+	border-bottom: 1px dotted white;
+}
+
+#wrapper {
+	margin:0 auto;
+	width:960px;
+}
+
+#main {
+	float: left;
+	width: 540px;
+	padding-left: 10px;
+	padding-right: 50px;
+	padding-bottom: 30px;
+}
+
+#madskillz {
+	text-align: center;
+}
+
+#madskillz div {
+	font: bold 16px "Trebuchet MS", Helvetica, Arial;
+	margin: 12px auto;
+	margin-left: 76px;
+	width: 350px;
+	padding-left: 24px;
+	height: 24px;
+	text-align: left;
+}
+
+.accept {
+	background: white url(/images/accept.png) no-repeat 0 4px;
+}
+
+.error {
+	background: white url(/images/exclamation.png) no-repeat 0 4px;
+}
+
+.empty {
+	background: white url(/images/star.png) no-repeat 0 4px;
+}
+
+hr {
+	color: black;
+	border: 3px solid black;
+	margin-top: 20px;
+}
+
+#madskillz input {
+	height: 30px;
+	width: 300px;
+	border: 4px solid black;
+	color: #2D719D;
+	font: bold 16pt "Trebuchet MS", Helvetica, Arial, Verdana;	
+}
+
+.validate_error {
+	background: white url(/images/validate_error.gif) repeat-x bottom;	
+}
+
+#suggestions {
+	margin-left: 70px;
+	width: 330px;
+	padding: 8px;
+	padding-left: 30px;
+	background: #F0F0F0 url(/images/information.png) no-repeat 6px 10px;
+}
+
+#suggestions p {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+#suggestions table {
+	width:100%;
+}
+
+#suggestions table td {
+	height: 20px;
+}
+
+blockquote {
+	color: #276692;
+	font: bold 12pt "Trebuchet MS", Helvetica, Arial, Verdana;
+}
+
+h2 {
+	font: bold 16pt "Trebuchet MS", Helvetica, Arial, Verdana;
+	text-align: center;
+	padding-bottom: 0px;
+	margin-bottom: 5px;
+}
+
+h2 a, h2 a:link, h2 a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+#sidebar {
+	float: right;
+	width: 360px;
+}
+
+.sidebar_download {
+	background: #2B6A95 url(/images/background_download.jpg) no-repeat top right;
+	color: #70E000;
+	padding: 22px;
+	margin: 0px;
+}
+
+.sidebar_download h3 {
+	padding: 0px;
+	margin: 0px;
+	color: #163C54;
+	font: bold 36px "Trebuchet MS", Helvetica, Arial;
+}
+
+.sidebar_download a, .sidebar_download a:link{
+	color: white;
+	text-decoration: none;
+	border-bottom: 1px dotted white;
+}
+
+.sidebar_download a:hover {
+	color: black;
+	background-color: white;
+	text-decoration: none;
+	border-bottom: 1px dotted black;
+}
+
+.sidebar_download p {
+	padding: 0px;
+	margin: 0px;
+	color: white;
+}
+
+.sidebar_chunk {
+	background: black url(/images/background_sidebar.gif) no-repeat;
+	color: #70E000;
+	padding: 22px;
+	margin: 0px;	
+}
+
+.sidebar_chunk a, .sidebar_chunk a:link{
+	color: white;
+	text-decoration: none;
+	border-bottom: 1px dotted white;
+}
+
+.sidebar_chunk a:hover {
+	color: black;
+	background-color: white;
+	text-decoration: none;
+	border-bottom: 1px dotted black;
+}
+
+
+.sidebar_chunk h3 {	
+	padding: 0px;
+	margin: 0px;
+	color: white;
+	font: bold 36px "Trebuchet MS", Helvetica, Arial;
+}
+
+label{
+	float: left;
+	width: 60px;
+	font-weight: bold;
+}
+
+.sidebar_chunk label{
+	color: white;
+}
+
+.button {
+	margin-left: 60px;
+}
+
+.medium {
+	width: 100px;
+}
+
+.sidebar_chunk .textbox {	
+	border: 1px solid #3A81B1;
+	background-color: white;
+}
+
+.sidebar_chunk li {
+	margin-bottom: 10px;
+    list-style-type: none;
+}
+
+#bottom {
+	background-color: black;
+	clear: both;
+	height: 55px;
+}
+
+#footer { 
+	margin: 0 auto;
+	width: 960px;
+	background-color: black;
+	height: 55px;
+}
+
+#footer_left {
+	float: left;
+	height: 55px;
+	width: 400px;
+	color: #666666;
+	padding-top: 11px;
+}
+
+#footer_left img {
+	margin-right: 8px;
+	margin-bottom: -5px;
+}
+
+#footer_right {
+	float: right;
+	padding-top: 20px;
+	width: 560px;
+	color: white;
+	text-align: right;
+}
+
+#footer_right ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#footer_right li{
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#footer_right a, #footer_right a:link {
+	color: white;
+	text-decoration: none;
+	margin-left: 18px;
+}
+
+#footer_right a:hover {
+	color: white;
+	border-bottom: 1px dotted white;
+}
+
+.white {
+	color: white;
+}
+
+.cf { 
+	font-family: monospace;
+	font-size: 10pt; 
+	color: black; 
+	background: white; 
+}
+
+.cl { 
+	font-family: monospace;
+	margin: 0px; 
+	}
+	
+.cb1 { color: green; }
+.cb2 { color: blue; }
+.cb3 { color: #a31515; }
+
+.codesnip-container {}
+.codesnip {
+	font: normal 12px monospace; 
+	padding: 1em 1.5em;
+	border: 1px dashed #2f6fab; 
+	color: #3f747f;
+	background-color: #f9f9f9;
+	white-space: nowrap;
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+
+.codesnip .de1, .php-brief .de2, .php .de1, .php .de2 {
+	font-weight: normal; 
+	background: transparent;
+	color: #000;
+}
+.codesnip .kw1, .php .kw1 {color: #a1a100;}
+.codesnip .kw2, .php .kw2 {color: #003366; font-weight: bold; }
+.codesnip .kw3, .php .kw3 {color:  #3f747f;}
+.codesnip .kw4, .php .kw4 {color: #f63333;}
+.codesnip .co1, .codesnip .co2, .codesnip .coMULTI, .codesnip .co1, .codesnip .co2, .codesnip .coMULTI {color: #009900; font-style: italic; /* #808080 */}
+.codesnip .es0, .php .es0 {color: #000033; font-weight: bold;}
+.codesnip .br0, .php .br0 {color: #66cc66;}
+.codesnip .st0, .php .st0 {color: #3366cc;}
+.codesnip .nu0, .php .nu0 {color: #cc0000;}
+.codesnip .me0, .php .me0 {color: #006600;}
+.codesnip .me1, .php .me1 {color: #006600;}
+
+.information {
+	background: #f9f9f9 url(/images/information.png) no-repeat 6px 10px;
+	padding: 1em 1.5em;
+	padding-left: 30px;
+	border: 1px dashed #2f6fab; 
+	color: #3f747f;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}

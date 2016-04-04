@@ -1,0 +1,11 @@
+package com.cafe.common.audit;
+
+/**
+ * Created by mamun on 1/25/16.
+ */
+public interface Auditable {
+
+    public Integer getEntityId();
+
+    public String getEntityName();
+}

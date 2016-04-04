@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+
+
+	<!--  first following line creates a rabbit connection factory with specified parameters -->
+    <rabbit:connection-factory id="connectionFactory" host="${amqp.host}" username="${amqp.username}" password="${amqp.password}" virtual-host="${amqp.vitualhost}" port="${amqp.port}"/>
+    <!-- obtain admin rights to create the an exchange -->
+    <rabbit:admin id="amqpAdmin" connection-factory="connectionFactory" />
+ 
+    <!-- create a bean which can send message to TUTORIAL_EXCHANGE for the Java program to call -->
+    <rabbit:template id="amqpTemplate" connection-factory="connectionFactory"  exchange="CAFE-EXCHANGE" queue="cafe" />
+    
+    <rabbit:queue id="cafe" name="cafe"/>
+    
+    <rabbit:topic-exchange id="cafeExchange" name="CAFE-EXCHANGE" >
+        <rabbit:bindings>
+            <rabbit:binding queue="cafe" pattern="cafe.#.*"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+    
+    <!-- instantiate TutorialListener -->
+
+    <bean id="emailListener" class="com.cafe.service.mail.EmailListener" />
+
+
+</beans>

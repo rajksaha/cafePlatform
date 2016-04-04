@@ -1,0 +1,63 @@
+<div class="alert alert-danger alert-dismissable" data-ng-show="hasError">
+    {{message}}
+</div>
+<div class="alert alert-success alert-dismissable" data-ng-show="hasSuccess">
+    {{message}}
+</div>
+
+<div class="row" id="validationRequired">
+
+    <div class="col-md-6 col-lg-6" >
+        <div class="form-group">
+            <label>Order Table<span class="text-red">*</span></label>
+            <select class="form-control input-sm required" data-ng-model="order.tableID">
+                <option value="">--Select--</option>
+                <option value="1">Table 1</option>
+                <option value="2">Table 2</option>
+                <option value="3">Table 3</option>
+            </select>
+            <div class="validationErrMsg small text-danger mt-5 hidden"></div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-6" >
+        <div class="form-group">
+            <label>Waiter<span class="text-red">*</span></label>
+            <select class="form-control input-sm required" data-ng-model="order.waiterID">
+                <option value="">--Select--</option>
+                <option value="1">Waiter 1</option>
+                <option value="2">Waiter 2</option>
+                <option value="3">Waiter 3</option>
+            </select>
+            <div class="validationErrMsg small text-danger mt-5 hidden"></div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-6" >
+        <div class="form-group">
+            <label>Product<span class="text-red">*</span></label>
+            <select class="form-control input-sm required" data-ng-model="order.productID">
+                <option value="">--Select--</option>
+                <option value="1">Product 1</option>
+                <option value="2">Product 2</option>
+                <option value="3">Product 3</option>
+            </select>
+            <div class="validationErrMsg small text-danger mt-5 hidden"></div>
+        </div>
+    </div>
+
+    <div class="col-md-1 col-lg-1" >
+        <div class="form-group">
+            <label>Qnt<span class="text-red">*</span></label>
+            <select class="form-control input-sm required" data-ng-model="order.amount">
+                <option value="">--Select--</option>
+                <option value="1"> 1</option>
+                <option value="2"> 2</option>
+                <option value="3"> 3</option>
+            </select>
+            <div class="validationErrMsg small text-danger mt-5 hidden"></div>
+        </div>
+    </div>
+
+</div>
+

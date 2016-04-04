@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cafe.mybatis.persistence.UserMapper">
+
+	<!--<insert id="create" parameterType="Division" useGeneratedKeys="true" keyProperty="divisionId" >
+		INSERT INTO DIVISION
+		(
+			DIVISION_ID,
+			DIVISION_NAME
+		)
+		VALUES
+		(
+			#{divisionId},
+			#{divisionName}
+		)
+	</insert>-->
+	
+	<!--<update id="update" parameterType="Division">
+		UPDATE DIVISION SET
+		DIVISION_NAME = #{divisionName}
+		WHERE DIVISION_ID = #{divisionId}
+	</update>-->
+
+	<!--<select id="getDivisionByID" parameterType="int" resultType="User">
+		SELECT DIVISION_ID, DIVISION_NAME
+		FROM DIVISION
+		WHERE DIVISION_ID = #{divisionId}
+	</select>
+
+	<select id="getDivisionByParam" parameterType="map" resultType="Division">
+		SELECT DIVISION_ID, DIVISION_NAME
+		FROM DIVISION
+		WHERE 1 = 1
+		<if test="divisionId != null">
+			AND DIVISION_ID = #{divisionId}
+		</if>
+        <if test="divisionName != null">
+            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        </if>
+        <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
+            ORDER BY ${sortColumn} ${sortOrder}
+            LIMIT #{limit} OFFSET #{offset}
+        </if>
+	</select>
+
+    <select id="getDivisionCountByParam" parameterType="map" resultType="int">
+        SELECT COUNT(DIVISION_ID)
+        FROM DIVISION
+        WHERE 1 = 1
+        <if test="divisionId != null">
+            AND DIVISION_ID = #{divisionId}
+        </if>
+        <if test="divisionName != null">
+            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        </if>
+    </select>
+
+	<select id="getDuplicateCount" parameterType="map" resultType="int">
+		SELECT COUNT(DIVISION_ID)
+		FROM DIVISION
+		WHERE 1 = 1
+		<if test="divisionName != null">
+			AND LOWER(DIVISION_NAME) = LOWER(#{divisionName})
+		</if>
+		<if test="divisionId > 0">
+			AND DIVISION_ID != #{divisionId}
+		</if>
+	</select>-->
+
+
+	<select id="getUserPermissionByUserID" parameterType="int" resultType="UserGroupPermission">
+		SELECT ugp.userGroupPermissionID , ugp.userGroupID , ugp.userPermissionID , ugp.statusValue , up.functionCode, up.shortName
+			FROM tact_user tu
+			JOIN user_group_assignment uga ON uga.userID = tu.id
+			JOIN user_group_permission ugp ON ugp.userGroupID = uga.userGroupID
+			JOIN user_permission up ON ugp.userPermissionID = up.userPermissionID
+			WHERE tu.id = #{id}
+	</select>
+
+
+</mapper>

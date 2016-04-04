@@ -1,0 +1,57 @@
+----------------------------------------------
+RabbiMQ Installation And Initial User Creation
+----------------------------------------------
+
+The following script :-
+1. setupRabbitQueue.sh (UNIX/Linux/Mac OS X)
+2. setupRabbitQueue.bat (Windows)
+can be use to create ktr-integration user and vhost. The script also will enable RabbitMQ Console access.
+
+In RabbitMQ, vhost or virtual host is not the same as hostname and mainly use for access control.
+
+The RabbiqMQ Console can be access from
+http://host:15672/
+The user fro the above script can be use to login.
+The default username guest and password guest also can be use. We need to change this default guest password after installing RabbitMQ.
+
+Most of the installation step is taken from http://www.rabbitmq.com/download.html
+
+----------------------------------------------
+Windows
+----------------------------------------------
+Usage: <username> <password> <vhost> <sbin>
+1. Download and install erlang (http://www.erlang.org/download.html)
+2. Download and install RabbitMQ server using Installer (http://www.rabbitmq.com/install-windows.html)
+3. Optionally setup the PATH to point to RabbitMQ sbin, c:\Program Files\RabbitMQ Server\rabbitmq_server-3.2.4\sbin
+4. Execute setupRabbitQueue.bat
+    setupRabbitQueue mule mule /kaitair "c:\Program Files\RabbitMQ Server\rabbitmq_server-3.2.4\sbin"
+Note :
+    - Notice the vhost (/kaitair) need to have slash
+    - The last param <sbin>, is optional, we only use this is PATH is not set
+    - RabitMQ server for Windows can be start and stop from Service or from Start Menu, RabbitMQ Server
+
+----------------------------------------------
+Linux
+----------------------------------------------
+Usage: setupRabbitQueue -u <username> -p <password> -h <vhost> -i <rabbitmq_sbin>
+The following command need root access
+1. apt-get install rabbitmq-server
+2. Execute setupRabbitQueue.sh
+    bash setupRabbitQueue.sh -u mule -p mule -h /kaitair
+3. Rstart rabbitmq
+    service rabbitmq-server restart
+Note :
+    - Notice the vhost (/kaitair) need to have slash
+    - Notice we don't need to specify -i as Ubuntu apt-get already setup the PATH correctly
+
+
+    rabbitmqadmin -V /bfpb -u bfpbadmin -p bfpbadmin -f long -d 3 list queues
+    rabbitmqadmin -V /bfpb -u bfpbadmin -p bfpbadmin list queues
+    rabbitmqadmin -V /bfpb -u bfpbadmin -p bfpbadmin purge queue name=BFPBQUEUE
+
+
+
+    Example :
+    1.  sudo apt-get install rabbitmq-server
+    2.  sudo bash setupRabbitQueue.sh -u bfpbadmin -p bfpbadmin -h /bfpb
+    3.  sudo service rabbitmq-server restart

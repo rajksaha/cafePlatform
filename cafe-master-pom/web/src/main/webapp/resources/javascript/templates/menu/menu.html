@@ -1,0 +1,35 @@
+<div class="mini-submenu">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</div>
+<div class="bfpb-menu list-group mt-15">
+    <div class="navigation">
+        <h4 class="list-group-item">Navigation</h4>
+    </div>
+
+    <div>
+        <a  class="list-group-item" data-ng-click="showMenu(0)"><i class="fa fa-user-plus"></i><i class="fa fa-angle-down-right"></i> User Management</a>
+        <div class="bfpb-sub-menu" data-ng-show="isCollapse[0]">
+            <a href="#/userSetup" class="list-group-item"><i class="fa fa-caret-right"></i> Add Users</a>
+            <a href="#" class="list-group-item"><i class="fa fa-caret-right"></i> Role</a>
+            <a href="#" class="list-group-item"><i class="fa fa-caret-right"></i> Role Permission</a>
+            <a href="#" class="list-group-item"><i class="fa fa-caret-right"></i> Profile</a>
+            <a href="#" class="list-group-item"><i class="fa fa-caret-right"></i> User, Profile and Role Assignment</a>
+        </div>
+    </div>
+
+    <div>
+        <a class="list-group-item" data-ng-click="showMenu(1)"><i class="fa fa-sliders"></i> Initial Setup</a>
+        <div class="bfpb-sub-menu" data-ng-show="isCollapse[1]" >
+            <a href="#/division" class="list-group-item"><i class="fa fa-caret-right"></i> Division</a>
+        </div>
+    </div>
+
+
+    <div>
+        <a class="list-group-item" href="#/placeOrder"><i class="fa fa-gavel"></i><i class="fa fa-angle-down-right"></i> Place A order</a>
+    </div>
+
+
+</div>

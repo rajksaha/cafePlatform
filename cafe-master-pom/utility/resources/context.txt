@@ -1,0 +1,5 @@
+<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" 
+		loginTimeout="10" maxWait="5000000" name="jdbc/BfpbDB" 
+		password="p" testOnBorrow="true" type="javax.sql.DataSource" 
+		url="jdbc:mysql://localhost/bfpb?connectTimeout=5000000&amp;socketTimeout=8000000" 
+		username="root" validationQuery="SELECT 1"/>
