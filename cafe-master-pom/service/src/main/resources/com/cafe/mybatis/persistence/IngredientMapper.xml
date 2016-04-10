@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace= "com.cafe.mybatis.persistence.IngredientMapper">
+
+	<insert  id="create" parameterType="Ingredient" useGeneratedKeys="true" keyProperty="ingredientID" > 
+		INSERT INTO `ingredient`
+		(
+			`restaurantID`, 
+			`name`
+		)
+		 VALUES 
+	 	(
+	 		#{restaurantID},
+	 		#{name}
+		 )
+	</insert>
+	
+	<update id="update" parameterType="Ingredient">
+		UPDATE `ingredient` SET 
+		`restaurantID`= #{restaurantID},
+		`name`= #{name} 
+		WHERE ingredientID = #{ingredientID}
+	</update>
+	
+	<select id="getIngredientByID" parameterType="int" resultType="Ingredient">
+		SELECT `ingredientID`, `restaurantID`, `name` 
+		FROM `ingredient` 
+		WHERE ingredientID = #{ingredientID}
+	</select>
+	
+	<select id="getIngredienntByParam" parameterType="map" resultType="Ingredient">
+		SELECT `ingredientID`, `restaurantID`, `name` 
+		FROM `ingredient` 
+		WHERE 1
+		<if test="ingrredientID != null">
+			AND ingredientID = #{ingredientID}
+		</if>
+		<if test="name != null">
+            AND LOWER(name) LIKE LOWER(CONCAT('%',#{name},'%'))
+        </if>
+        <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
+            ORDER BY ${sortColumn} ${sortOrder}
+            LIMIT #{limit} OFFSET #{offset}
+        </if>
+	</select>
+	
+	<select id="getIngresientCountByParam" parameterType="map" resultType="int">
+		SELECT COUNT(ingredientID)
+        FROM ingredient
+        WHERE 1 = 1
+        <if test="ingredientID != null">
+            AND ingredientID = #{ingredientID}
+        </if>
+        <if test="name != null">
+            AND LOWER(name) LIKE LOWER(CONCAT('%',#{name},'%'))
+        </if>
+	</select>
+	
+	<select id="getDuplicateCount" parameterType="map" resultType="int">
+		SELECT COUNT(ingredientID)
+		FROM ingredient
+		WHERE 1 = 1
+		<if test="name != null">
+			AND LOWER(name) = LOWER(#{name})
+		</if>
+		<if test="ingredientID > 0">
+			AND ingredientID != #{ingredientID}
+		</if>
+	</select>
+	
+	<delete id= "delete" paeameterType= "map" >
+		DELETE FROM `ingredient` 
+		WHERE ingredientID = #{ingredientID}
+	</delete>
+	
+
+
+</mapper>

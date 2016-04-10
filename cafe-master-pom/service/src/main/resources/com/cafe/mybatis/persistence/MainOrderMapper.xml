@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cafe.mybatis.persistence.MainOrderMapper">
+
+	<insert id="create" parameterType="MainOrder" useGeneratedKeys="true" keyProperty="orderID" >
+		INSERT INTO `main_order`
+		(
+			`restaurantID`,
+			`userID`, 
+			`tableID`, 
+			`waiterID`, 
+			`netAmount`, 
+			`discount`, 
+			`subtotal`, 
+			`gst`, 
+			`total`, 
+			`date`, 
+			`time`
+		)
+		 VALUES 
+		(
+		 	#{restaurantID}, 
+		 	#{userID}, 
+		 	#{tableID},
+		 	#{waiterID}, 
+		 	#{netAmount}, 
+		 	#{discount}, 
+		 	#{subtotal}, 
+		 	#{gst}, 
+		 	#{total}, 
+		 	#{date}, 
+		 	#{time}		 	
+		 )
+	</insert>
+	
+	<update id="update" parameterType="MainOrder">
+		UPDATE `main_order` SET 
+		`restaurantID`=#{restaurantID},
+		`userID`=#{userID},
+		`tableID`=#{tableID},
+		`waiterID`=#{waiterID},
+		`netAmount`=#{netAmount},
+		`discount`=#{discount},
+		`subtotal`=#{subtotal},
+		`gst`=#{gst},
+		`total`=#{total},
+		`date`=#{date},
+		`time`=#{time}
+		WHERE orderID = #{orderID}
+	</update>
+
+	<select id="getMainOrderByID" parameterType="int" resultType="MainOrder">
+		SELECT `restaurantID`, `orderID`, `userID`, `tableID`, `waiterID`, `netAmount`, `discount`, `subtotal`, `gst`, `total`, `date`, `time` 
+		FROM `main_order`
+		WHERE orderID = #{orderID}
+	</select>
+
+	<select id="getMainOrderByParam" parameterType="map" resultType="MainOrder">
+		SELECT `restaurantID`, `orderID`, `userID`, `tableID`, `waiterID`, `netAmount`, `discount`, `subtotal`, `gst`, `total`, `date`, `time` 
+		FROM `main_order` 
+		WHERE 1
+		<if test="orderID != null">
+			AND orderID = #{orderID}
+		</if>
+        <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
+            ORDER BY ${sortColumn} ${sortOrder}
+            LIMIT #{limit} OFFSET #{offset}
+        </if>
+	</select>
+
+    <select id="getMainOrderCountByParam" parameterType="map" resultType="int">
+        SELECT COUNT(orderID)
+        FROM `main_order`
+        WHERE 1 = 1
+        <if test="orderID != null">
+            AND orderID = #{orderID}
+        </if>
+    </select>
+
+	<select id="getDuplicateCount" parameterType="map" resultType="int">
+		SELECT COUNT(orderID)
+		FROM `main_order`
+		WHERE 1 = 1
+		<if test="orderID > 0">
+			AND orderID != #{orderID}
+		</if>
+	</select>
+	
+	<delete id="delete" parameterType= "map">
+		DELETE FROM `main_order` 
+		WHERE orderID = #{orderID}
+	</delete>
+
+
+</mapper>

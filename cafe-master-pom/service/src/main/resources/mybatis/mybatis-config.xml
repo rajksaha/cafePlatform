@@ -10,11 +10,12 @@
 	</settings>
 
 	<typeAliases>
-        <typeAlias alias="Division" type="com.cafe.mybatis.domain.Division"/>
+        <typeAlias alias="Restaurant" type="com.cafe.mybatis.domain.RestaurantData"/>
+		<typeAlias alias="Division" type="com.cafe.mybatis.domain.Division"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserData" alias="User"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserGroupPermissionData" alias="UserGroupPermission"/>
 	</typeAliases>
-
+	
     <plugins>
         <plugin interceptor="com.cafe.mybatis.interceptor.MapperInterceptor"/>
     </plugins>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace= "com.cafe.mybatis.persistence.WaiterMapper">
+	
+	<insert  id="create" parameterType="Waiter" useGeneratedKeys="true" keyProperty="waiterID" >
+		INSERT INTO `waiter`
+		(
+			`restaurantID`, 
+			`name`
+		)
+		 VALUES 
+		(
+			#{restaurantID},
+			#{name}
+		)
+	</insert>
+	
+	<update id="update" parameterType="Waiter">
+		UPDATE `waiter` SET 
+		`restaurantID`= #{restaurantID},
+		`name`= #{name} 
+		WHERE waiterID = #{waiterID}
+	</update>
+	
+	<select id="getWaiterByID" parameterType="int" resultType="Waiter">
+		SELECT `waiterID`, `restaurantID`, `name` 
+		FROM `waiter` 
+		WHERE waiterID = #{waiterID}
+	</select>
+	
+	<select id="getWaiterByParam" parameterType="map" resultType="Waiter">
+		SELECT `waiterID`, `restaurantID`, `name`
+		FROM `waiter` 
+		WHERE 1
+		<if test="waiterID != null">
+			AND waiterID = #{waiterID}
+		</if>
+		<if test="name != null">
+            AND LOWER(name) LIKE LOWER(CONCAT('%',#{name},'%'))
+        </if>
+        <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
+            ORDER BY ${sortColumn} ${sortOrder}
+            LIMIT #{limit} OFFSET #{offset}
+        </if>
+	</select>	
+	
+	<select id="getWaiterCountByParam" parameterType="map" resultType="int">
+		SELECT COUNT(waiterID)
+        FROM waiter
+        WHERE 1 = 1
+        <if test="waiterID != null">
+            AND waiterID = #{waiterID}
+        </if>
+        <if test="name != null">
+            AND LOWER(name) LIKE LOWER(CONCAT('%',#{name},'%'))
+        </if>
+	</select>
+	
+	<select id="getDuplicateCount" parameterType="map" resultType="int">
+		SELECT COUNT(waiterID)
+		FROM waiter
+		WHERE 1 = 1
+		<if test="name != null">
+			AND LOWER(name) = LOWER(#{name})
+		</if>
+		<if test="waiterID > 0">
+			AND waiterID != #{waiterID}
+		</if>
+	</select>
+	
+	<delete id= "delete" paeameterType= "Waiter" >
+		DELETE FROM `waiter` 
+		WHERE waiterID = #{waiterID}
+	</delete>
+	
+	
+	
+</mapper>

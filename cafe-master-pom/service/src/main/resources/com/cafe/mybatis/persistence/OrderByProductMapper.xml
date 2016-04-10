@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cafe.mybatis.persistence.OrderByProductMapper">
+
+	<insert id="create" parameterType="OrderByProduct" useGeneratedKeys="true" keyProperty="orderByProductID" >
+		INSERT INTO `order_by_product`
+		(
+			`orderID`, 
+			`productID`, 
+			`quantity`, 
+			`price`
+		)
+		 VALUES 
+		(
+			#{orderID},
+			#{productID},
+			#{quantity},
+			#{price}
+		)
+	</insert>
+	
+	<update id="update" parameterType="OrderByProduct">
+		UPDATE `order_by_product` SET 
+		`orderID`= #{orderID},
+		`productID`= #{productID},
+		`quantity`= #{quantity},
+		`price`= #{price}
+		WHERE orderByProductID = #{orderByProductID}
+	</update>
+
+	<select id="getOrderByProductByID" parameterType="int" resultType="OrderByProduct">
+		SELECT `orderByProductID`, `orderID`, `productID`, `quantity`, `price` 
+		FROM `order_by_product` 
+		WHERE orderByProductID = #{orderByProductID}
+	</select>
+
+	<select id="getOrderByProductByParam" parameterType="map" resultType="OrderByProduct">
+		SELECT `orderByProductID`, `orderID`, `productID`, `quantity`, `price`
+		FROM `order_by_product`
+		WHERE 1 = 1
+		<if test="orderByProductID != null">
+			AND orderByProductID = #{orderByProductID}
+		</if>
+        <if test="divisionName != null">
+            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        </if>
+        <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
+            ORDER BY ${sortColumn} ${sortOrder}
+            LIMIT #{limit} OFFSET #{offset}
+        </if>
+	</select>
+
+    <select id="getOrderByProductCountByParam" parameterType="map" resultType="int">
+        SELECT `orderByProductID`, `orderID`, `productID`, `quantity`, `price` 
+        FROM `order_by_product` 
+        WHERE 1
+        <if test="orderByProductID != null">
+            AND orderByProductID = #{orderByProductID}
+        </if>
+        <if test="divisionName != null">
+            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        </if>
+    </select>
+
+	<select id="getDuplicateCount" parameterType="map" resultType="int">
+		SELECT COUNT(orderByProductID)
+		FROM `order_by_product`
+		WHERE 1 = 1
+		<if test="divisionName != null">
+			AND LOWER(DIVISION_NAME) = LOWER(#{divisionName})
+		</if>
+		<if test="orderByProductID > 0">
+			AND orderByProductID != #{orderByProductID}
+		</if>
+	</select>
+	
+	<delete id ="delete" parameterType= "OrderByProduct">
+		DELETE FROM `order_by_product` 
+		WHERE orderByProductID = #{orderByProductID}
+	</delete>
+
+
+</mapper>

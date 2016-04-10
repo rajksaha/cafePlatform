@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cafe.mybatis.persistence.RestaurantTableMapper">
+
+	<insert id="create" parameterType="RestaurantTable" useGeneratedKeys="true" keyProperty="tableID" >
+		INSERT INTO `restaurant_table`
+		(
+			`restaurantID`, 
+			`level`, 
+			`name`, 
+			`commentOrder`
+		) 
+		VALUES 
+		(
+			#{restaurantID},
+			#{level},
+			#{name},
+			#{commentOrder}
+		)
+	</insert>
+	
+	<update id="update" parameterType="RestaurantTable">
+		UPDATE `restaurant_table` SET 
+		`restaurantID`= #{restaurantID},
+		`level`= #{level},
+		`name`= #{name},
+		`commentOrder`= #{commentOrder} 
+		WHERE tableID = #{tableID}
+	</update>
+
+	<select id="getRestaurantTableByID" parameterType="int" resultType="RestaurantTable">
+		SELECT `tableID`, `restaurantID`, `level`, `name`, `commentOrder` 
+		FROM `restaurant_table` 
+		WHERE tableID = #{tableID}
+	</select>
+
+	<select id="getRestaurantTableByParam" parameterType="map" resultType="RestaurantTable">
+		SELECT `tableID`, `restaurantID`, `level`, `name`, `commentOrder` 
+		FROM `restaurant_table` 
+		WHERE 1
+		<if test="tableID != null">
+			AND tableID = #{tableID}
+		</if>
+        <if test="divisionName != null">
+            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        </if>
+        <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
+            ORDER BY ${sortColumn} ${sortOrder}
+            LIMIT #{limit} OFFSET #{offset}
+        </if>
+	</select>
+
+    <select id="getRestaurantTableCountByParam" parameterType="map" resultType="int">
+        SELECT COUNT(tableID)
+        FROM `restaurant_table`
+        WHERE 1 = 1
+        <if test="tableID != null">
+            AND tableID = #{tableID}
+        </if>
+        <if test="divisionName != null">
+            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        </if>
+    </select>
+
+	<select id="getDuplicateCount" parameterType="map" resultType="int">
+		SELECT COUNT(tableID)
+		FROM `restaurant_table`
+		WHERE 1 = 1
+		<if test="divisionName != null">
+			AND LOWER(DIVISION_NAME) = LOWER(#{divisionName})
+		</if>
+		<if test="tableID > 0">
+			AND tableID != #{tableID}
+		</if>
+	</select>
+	
+	<delete id="delete" parameterType= "RestaurantTable">
+		DELETE FROM `restaurant_table` 
+		WHERE tableID = #{tableID}
+	</delete>
+
+
+</mapper>
