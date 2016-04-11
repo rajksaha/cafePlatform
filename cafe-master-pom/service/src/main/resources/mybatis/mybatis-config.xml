@@ -12,7 +12,7 @@
 	<typeAliases>
         <typeAlias alias="Restaurant" type="com.cafe.mybatis.domain.RestaurantData"/>
 		<typeAlias alias="Division" type="com.cafe.mybatis.domain.Division"/>
-		<typeAlias type="com.cafe.mybatis.domain.UserData" alias="User"/>
+		<typeAlias type="com.cafe.mybatis.domain.UserData" alias="UserData"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserGroupPermissionData" alias="UserGroupPermission"/>
 	</typeAliases>
 	

@@ -34,7 +34,7 @@ public class BaseTest {
     public static void setJndiDataSource(String dataSourceBeanId) throws Exception {
         DataSource ds = (DataSource) BaseTest.testContext.getBean(dataSourceBeanId);
         SimpleNamingContextBuilder builder = SimpleNamingContextBuilder.emptyActivatedContextBuilder();
-        builder.bind("java:/comp/env/jdbc/BfpbDB", ds);
+        builder.bind("java:/comp/env/jdbc/appDB", ds);
     }
 
     @Before

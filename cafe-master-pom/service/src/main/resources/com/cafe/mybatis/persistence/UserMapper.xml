@@ -4,32 +4,45 @@
 
 <mapper namespace="com.cafe.mybatis.persistence.UserMapper">
 
-	<!--<insert id="create" parameterType="Division" useGeneratedKeys="true" keyProperty="divisionId" >
-		INSERT INTO DIVISION
+	<insert id="create" parameterType="UserData" useGeneratedKeys="true" keyProperty="userID" >
+
+		INSERT INTO `user`
 		(
-			DIVISION_ID,
-			DIVISION_NAME
-		)
+		`restaurantID`,
+		`level`,
+		`name`,
+		`username`,
+		`password`)
 		VALUES
 		(
-			#{divisionId},
-			#{divisionName}
-		)
-	</insert>-->
+		#{restaurantID},
+		#{level},
+		#{name},
+		#{username},
+		#{password}
+		);
+	</insert>
 	
-	<!--<update id="update" parameterType="Division">
-		UPDATE DIVISION SET
-		DIVISION_NAME = #{divisionName}
-		WHERE DIVISION_ID = #{divisionId}
-	</update>-->
+	<update id="update" parameterType="UserData">
 
-	<!--<select id="getDivisionByID" parameterType="int" resultType="User">
+		UPDATE `user`
+		SET
+		`restaurantID` = #{restaurantID},
+		`level` = #{level},
+		`name` = #{name},
+		`username` = #{username},
+		`password` = #{password}
+		WHERE `userID` = #{userID};
+
+	</update>
+
+	<select id="getUserByID" parameterType="int" resultType="UserData">
 		SELECT DIVISION_ID, DIVISION_NAME
 		FROM DIVISION
 		WHERE DIVISION_ID = #{divisionId}
 	</select>
 
-	<select id="getDivisionByParam" parameterType="map" resultType="Division">
+	<select id="getDivisionByParam" parameterType="map" resultType="UserData">
 		SELECT DIVISION_ID, DIVISION_NAME
 		FROM DIVISION
 		WHERE 1 = 1
@@ -67,17 +80,9 @@
 		<if test="divisionId > 0">
 			AND DIVISION_ID != #{divisionId}
 		</if>
-	</select>-->
-
-
-	<select id="getUserPermissionByUserID" parameterType="int" resultType="UserGroupPermission">
-		SELECT ugp.userGroupPermissionID , ugp.userGroupID , ugp.userPermissionID , ugp.statusValue , up.functionCode, up.shortName
-			FROM tact_user tu
-			JOIN user_group_assignment uga ON uga.userID = tu.id
-			JOIN user_group_permission ugp ON ugp.userGroupID = uga.userGroupID
-			JOIN user_permission up ON ugp.userPermissionID = up.userPermissionID
-			WHERE tu.id = #{id}
 	</select>
+
+
 
 
 </mapper>
