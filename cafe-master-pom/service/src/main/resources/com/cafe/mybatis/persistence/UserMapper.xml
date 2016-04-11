@@ -37,48 +37,54 @@
 	</update>
 
 	<select id="getUserByID" parameterType="int" resultType="UserData">
-		SELECT DIVISION_ID, DIVISION_NAME
-		FROM DIVISION
-		WHERE DIVISION_ID = #{divisionId}
+		SELECT `userID`,
+				`restaurantID`,
+				`level`,
+				`name`,
+				`username`,
+				`password`
+		FROM `user` WHERE userID = #{userID};
 	</select>
 
-	<select id="getDivisionByParam" parameterType="map" resultType="UserData">
-		SELECT DIVISION_ID, DIVISION_NAME
-		FROM DIVISION
+	<select id="getUserByParam" parameterType="map" resultType="UserData">
+		SELECT
+			u.`userID`,
+			u.`restaurantID`,
+			u.`level`,
+			u.`name`,
+			u.`username`,
+			u.`password`,
+			r.restaurantName
+		FROM `user` u
+		JOIN restaurant r ON u.restaurantID = r.restaurantID
 		WHERE 1 = 1
-		<if test="divisionId != null">
-			AND DIVISION_ID = #{divisionId}
+		<if test="userID != null">
+			AND userID = #{userID}
 		</if>
-        <if test="divisionName != null">
-            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
-        </if>
         <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
             ORDER BY ${sortColumn} ${sortOrder}
             LIMIT #{limit} OFFSET #{offset}
         </if>
 	</select>
 
-    <select id="getDivisionCountByParam" parameterType="map" resultType="int">
-        SELECT COUNT(DIVISION_ID)
-        FROM DIVISION
+    <select id="getUserCountByParam" parameterType="map" resultType="int">
+        SELECT COUNT(userID)
+        FROM user
         WHERE 1 = 1
-        <if test="divisionId != null">
-            AND DIVISION_ID = #{divisionId}
-        </if>
-        <if test="divisionName != null">
-            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        <if test="userID != null">
+            AND userID = #{userID}
         </if>
     </select>
 
 	<select id="getDuplicateCount" parameterType="map" resultType="int">
-		SELECT COUNT(DIVISION_ID)
-		FROM DIVISION
+		SELECT COUNT(userID)
+		FROM user
 		WHERE 1 = 1
-		<if test="divisionName != null">
-			AND LOWER(DIVISION_NAME) = LOWER(#{divisionName})
+		<if test="userName != null">
+			AND LOWER(userName) = LOWER(#{userName})
 		</if>
-		<if test="divisionId > 0">
-			AND DIVISION_ID != #{divisionId}
+		<if test="userID > 0">
+			AND userID != #{userID}
 		</if>
 	</select>
 

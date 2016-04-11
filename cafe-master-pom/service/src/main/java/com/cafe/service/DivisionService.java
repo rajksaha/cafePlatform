@@ -20,9 +20,6 @@ public class DivisionService {
     @Autowired
     private DivisionMapper divisionMapper;
 
-    @Autowired
-    private UserMapper userMapper;
-
     public void create(Division division) throws BfpbException {
         this.divisionMapper.create(division);
     }
@@ -48,6 +45,6 @@ public class DivisionService {
     }
 
     public List<UserGroupPermissionData> getUserPermissionByUserID(Integer userID) throws BfpbException {
-        return this.userMapper.getUserPermissionByUserID(userID);
+        return null;
     }
 }

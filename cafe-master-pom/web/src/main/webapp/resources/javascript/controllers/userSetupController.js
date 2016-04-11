@@ -1,4 +1,4 @@
-app.controller('UserSetupController', function($scope, $rootScope, $location, $stateParams, $state, $http, $timeout, UserSetupService) {
+app.controller('UserSetupController', function($scope, $rootScope, $location, $stateParams, $state, $http, $timeout, UserSetupService, RestaurantSetupService) {
 
     $scope.hasError = false;
     $scope.hasSuccess = false;
@@ -10,6 +10,26 @@ app.controller('UserSetupController', function($scope, $rootScope, $location, $s
 
     $scope.init = function() {
 
+        RestaurantSetupService.getAll.query({}, {}).$promise.then(function(result) {
+            $scope.restaurantDataList = result;
+        });
+        $scope.loadData();
+
+    };
+
+    $scope.getText = function(num){
+
+        if(num == 1){
+            return "Admin";
+        }else if(num == 2){
+            return "Manager";
+        }else{
+            return "Waiter";
+        }
+
+    };
+
+    $scope.loadData = function(){
         $scope.userData = {};
         $scope.showForm = false;
         UserSetupService.getAll.query({}, {}).$promise.then(function(result) {
@@ -21,20 +41,19 @@ app.controller('UserSetupController', function($scope, $rootScope, $location, $s
         $scope.hideMessage();
         if(validator.validateForm("#validationRequired",".validatorMsg",null)) {
             UserSetupService.save.query({}, userData ).$promise.then(function(result) {
-                $scope.showSuccessMessage("User " + sector.name + " saved successfully");
-                $scope.init();
+                $scope.showSuccessMessage("Information updated successfully");
+                $scope.loadData();
             });
         }
-
     };
 
     $scope.update = function(userData){
         $scope.hideMessage();
         if(validator.validateForm("#validationRequired",".validatorMsg",null)) {
-                    UserSetupService.update.query({}, userData ).$promise.then(function(result) {
-                        $scope.showSuccessMessage("Sector " + userData.sectorName + " updated successfully");
-                        $scope.init();
-                    });
+            UserSetupService.update.query({}, userData ).$promise.then(function(result) {
+                $scope.showSuccessMessage("Information updated successfully");
+                $scope.loadData();
+            });
         }
     };
 

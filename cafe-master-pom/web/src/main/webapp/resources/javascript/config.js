@@ -270,7 +270,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
                     {
                         name: 'bfpbApp',
                         files: [
-                            'resources/javascript/services/userSetupService.js' + jsVersion
+                            'resources/javascript/services/userSetupService.js' + jsVersion, 'resources/javascript/services/restaurantSetupService.js' + jsVersion
                         ]
                     });
             }]

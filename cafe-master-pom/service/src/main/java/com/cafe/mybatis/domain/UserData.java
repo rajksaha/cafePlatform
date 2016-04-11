@@ -11,6 +11,8 @@ public class UserData {
     private String name;
     private String username;
     private String password;
+
+	private String restaurantName;
     
 	public Integer getUserID() {
 		return userID;
@@ -48,9 +50,14 @@ public class UserData {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    
-       
-    
+
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
 }
     
 

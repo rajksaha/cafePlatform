@@ -12,7 +12,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-6">
                     <div class="form-group mb-0">
                         <label>Restaurant :<span class="text-red">*</span></label>
-                        <select data-ng-model="userData.restaurantID" class="form-control input-sm required" data-ng-options="cafe.restaurantID as cafe.name for cafe cafe in cafeList">
+                        <select data-ng-model="userData.restaurantID" class="form-control input-sm required" data-ng-options="cafe.restaurantID as cafe.restaurantName for cafe in restaurantDataList">
                             <option value="">--Select--</option>
                         </select>
                         <div class="validationErrMsg hidden"></div>
@@ -76,6 +76,7 @@
         <tr class="bg-primary">
             <th width="8%">Sl</th>
             <th>Name</th>
+            <th>Restaurant Name</th>
             <th>Level</th>
             <th>User name</th>
             <th width="10%">Action</th>
@@ -85,7 +86,8 @@
         <tr data-ng-repeat="userData in userDataList">
             <td>{{$index + 1}}</td>
             <td>{{userData.name}}</td>
-            <td>{{userData.level}}</td>
+            <td>{{userData.restaurantName}}</td>
+            <td>{{getText(userData.level)}}</td>
             <td>{{userData.username}}</td>
             <td>
                 <a href="" class="clearfix" data-ng-click="edit(userData)"><span class="fa fa-pencil-square-o"></span> Edit</a>

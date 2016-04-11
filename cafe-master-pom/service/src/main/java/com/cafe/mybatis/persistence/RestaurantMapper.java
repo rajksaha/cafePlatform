@@ -7,6 +7,9 @@ import com.cafe.mybatis.domain.RestaurantData;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by raj on 4/11/2016.
+ */
 public interface RestaurantMapper {
 
     void create(RestaurantData data) throws BfpbException;

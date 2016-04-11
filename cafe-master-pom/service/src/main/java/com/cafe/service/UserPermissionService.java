@@ -18,6 +18,6 @@ public class UserPermissionService {
     private UserMapper userMapper;
 
     public List<UserGroupPermissionData> getUserPermissionByUserID (Integer userID) throws BfpbException {
-        return userMapper.getUserPermissionByUserID(userID);
+        return null;
     }
 }
