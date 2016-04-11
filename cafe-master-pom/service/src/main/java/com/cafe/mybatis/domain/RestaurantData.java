@@ -7,8 +7,8 @@ public class RestaurantData {
 	private Integer restaurantID;
 	private String restaurantName;
 	private Integer useGst;
-	private BigDecimal getRate;
-	
+	private BigDecimal gstRate;
+
 	public Integer getRestaurantID() {
 		return restaurantID;
 	}
@@ -27,13 +27,12 @@ public class RestaurantData {
 	public void setUseGst(Integer useGst) {
 		this.useGst = useGst;
 	}
-	public BigDecimal getGetRate() {
-		return getRate;
-	}
-	public void setGetRate(BigDecimal getRate) {
-		this.getRate = getRate;
-	}
-	
-	
 
+	public BigDecimal getGstRate() {
+		return gstRate;
+	}
+
+	public void setGstRate(BigDecimal gstRate) {
+		this.gstRate = gstRate;
+	}
 }

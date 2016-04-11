@@ -183,6 +183,37 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
             }]
         }
     };
+
+    var restaurantSetup = {
+        name  : 'root.restaurantSetup',
+        url   : '/restaurantSetup',
+        views : {
+            'container@' : {
+                templateUrl : 'resources/javascript/templates/restaurantSetup.html',
+                controller : 'RestaurantSetupController'
+            }
+        },
+        resolve : {
+            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/controllers/restaurantSetupController.js' + jsVersion
+                        ]
+                    });
+            }],
+            loadMyService: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/services/restaurantSetupService.js' + jsVersion
+                        ]
+                    });
+            }]
+        }
+    };
     
     var placeOrder = {
             name  : 'root.placeOrder',
@@ -252,6 +283,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
         .state(home)
         .state(forgetPassword)
         .state(division)
+        .state(restaurantSetup)
         .state(userSetup)
         .state(placeOrder);
 

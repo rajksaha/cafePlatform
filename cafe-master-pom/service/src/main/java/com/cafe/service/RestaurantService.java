@@ -35,7 +35,7 @@ public class RestaurantService {
     	return this.restaurantMapper.delete(params);
     }
 
-    public List<RestaurantData> getDivisionByParam(Map<String, Object> params) throws BfpbException {
+    public List<RestaurantData> getRestaurantByParam(Map<String, Object> params) throws BfpbException {
         return this.restaurantMapper.getRestaurantByParam(params);
     }
 
