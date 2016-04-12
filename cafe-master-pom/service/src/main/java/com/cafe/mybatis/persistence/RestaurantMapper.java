@@ -1,7 +1,6 @@
 package com.cafe.mybatis.persistence;
 
 import com.cafe.common.exception.BfpbException;
-import com.cafe.mybatis.domain.Division;
 import com.cafe.mybatis.domain.RestaurantData;
 
 import java.util.List;

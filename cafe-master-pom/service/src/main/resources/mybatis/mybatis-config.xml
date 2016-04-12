@@ -10,8 +10,12 @@
 	</settings>
 
 	<typeAliases>
-        <typeAlias alias="Restaurant" type="com.cafe.mybatis.domain.RestaurantData"/>
+        
 		<typeAlias alias="Division" type="com.cafe.mybatis.domain.Division"/>
+		<typeAlias alias="Product" type="com.cafe.mybatis.domain.ProductData"/>
+		<typeAlias alias="Waiter" type="com.cafe.mybatis.domain.WaiterData"/>
+		<typeAlias alias="Ingredient" type="com.cafe.mybatis.domain.IngredientData"/>
+		<typeAlias alias="Restaurant" type="com.cafe.mybatis.domain.RestaurantData"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserData" alias="UserData"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserGroupPermissionData" alias="UserGroupPermission"/>
 	</typeAliases>

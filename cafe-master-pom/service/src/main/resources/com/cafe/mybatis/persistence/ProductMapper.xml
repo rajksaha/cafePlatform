@@ -76,7 +76,7 @@
 		</if>
 	</select>
 	
-	<delete id= "delete" paeameterType= "Product" >
+	<delete id= "delete" parameterType="map">
 		DELETE FROM `product` 
 		WHERE productID = #{productID}		
 	</delete>

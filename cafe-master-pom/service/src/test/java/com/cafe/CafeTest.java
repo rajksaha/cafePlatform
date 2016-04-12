@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  */
 public class CafeTest extends BaseTest {
 
-    RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
+   /* RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
 
 
     //@Ignore
@@ -24,5 +24,5 @@ public class CafeTest extends BaseTest {
         restaurantData.setUseGst(1);
         restaurantData.setGstRate(BigDecimal.valueOf(0.15));
         restaurantService.create(restaurantData);
-    }
+    }*/
 }

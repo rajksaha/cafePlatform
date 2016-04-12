@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class DivisionTest extends BaseTest {
 
-    DivisionService divisionService = applicationContext.getBean(DivisionService.class);
+    /*DivisionService divisionService = applicationContext.getBean(DivisionService.class);
 
     @Ignore
     @Test
@@ -24,6 +24,6 @@ public class DivisionTest extends BaseTest {
         params.put("divisionName", "t");
         List<Division> divisions = divisionService.getDivisionByParam(params);
         System.out.println(divisions.size());
-    }
+    }*/
 
 }
