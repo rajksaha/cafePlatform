@@ -9,9 +9,9 @@ import com.cafe.mybatis.domain.RestaurantTableData;
 
 public interface RestaurantTableMapper {
 	
-	 void create(RestaurantTableData data) throws BfpbException;
+	void create(RestaurantTableData data) throws BfpbException;
 
-	 void update(RestaurantTableData data) throws BfpbException;
+	void update(RestaurantTableData data) throws BfpbException;
 
     List<RestaurantTableData> getRestaurantTableByParam(Map<String, Object> params) throws BfpbException;
 

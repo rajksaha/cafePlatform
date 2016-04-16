@@ -11,12 +11,17 @@
 
 	<typeAliases>
         
-		<typeAlias alias="Division" type="com.cafe.mybatis.domain.Division"/>
+		
 		<typeAlias alias="Product" type="com.cafe.mybatis.domain.ProductData"/>
 		<typeAlias alias="Waiter" type="com.cafe.mybatis.domain.WaiterData"/>
 		<typeAlias alias="Ingredient" type="com.cafe.mybatis.domain.IngredientData"/>
+		<typeAlias alias="MainOrder" type="com.cafe.mybatis.domain.MainOrderData"/>
+		<typeAlias alias="OrderByProduct" type="com.cafe.mybatis.domain.OrderByProductData"/>
 		<typeAlias alias="Restaurant" type="com.cafe.mybatis.domain.RestaurantData"/>
+		<typeAlias alias="RestaurantTable" type="com.cafe.mybatis.domain.RestaurantTableData"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserData" alias="UserData"/>
+		
+		<typeAlias alias="Division" type="com.cafe.mybatis.domain.Division"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserGroupPermissionData" alias="UserGroupPermission"/>
 	</typeAliases>
 	

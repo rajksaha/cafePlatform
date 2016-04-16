@@ -30,7 +30,7 @@
 		WHERE ingredientID = #{ingredientID}
 	</select>
 	
-	<select id="getIngredienntByParam" parameterType="map" resultType="Ingredient">
+	<select id="getIngredientByParam" parameterType="map" resultType="Ingredient">
 		SELECT `ingredientID`, `restaurantID`, `name` 
 		FROM `ingredient` 
 		WHERE 1
@@ -46,7 +46,7 @@
         </if>
 	</select>
 	
-	<select id="getIngresientCountByParam" parameterType="map" resultType="int">
+	<select id="getIngredientCountByParam" parameterType="map" resultType="int">
 		SELECT COUNT(ingredientID)
         FROM ingredient
         WHERE 1 = 1
