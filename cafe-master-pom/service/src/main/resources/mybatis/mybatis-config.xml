@@ -20,7 +20,6 @@
 		<typeAlias alias="Restaurant" type="com.cafe.mybatis.domain.RestaurantData"/>
 		<typeAlias alias="RestaurantTable" type="com.cafe.mybatis.domain.RestaurantTableData"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserData" alias="UserData"/>
-		
 		<typeAlias alias="Division" type="com.cafe.mybatis.domain.Division"/>
 		<typeAlias type="com.cafe.mybatis.domain.UserGroupPermissionData" alias="UserGroupPermission"/>
 	</typeAliases>
