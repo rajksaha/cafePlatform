@@ -27,4 +27,6 @@ public interface UserMapper {
     Integer getDuplicateCount(Map<String, Object> params) throws BfpbException;
 
     Integer delete(Map<String, Object> params) throws BfpbException;
+
+    UserData getUserByUserName(String username) throws BfpbException;
 }

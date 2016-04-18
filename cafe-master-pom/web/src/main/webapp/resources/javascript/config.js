@@ -230,7 +230,7 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
                         {
                             name: 'bfpbApp',
                             files: [
-                                'resources/javascript/controllers/placeOrder/placeOrderController.js' + jsVersion
+                                'resources/javascript/controllers/placeOrderController.js' + jsVersion
                             ]
                         });
                 }],
@@ -239,7 +239,9 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
                         {
                             name: 'bfpbApp',
                             files: [
-                                'resources/javascript/services/placeOrder/placeOrderService.js' + jsVersion
+                                'resources/javascript/services/placeOrderService.js' + jsVersion, 'resources/javascript/services/productSetupService.js' + jsVersion,
+                                'resources/javascript/services/tableSetupService.js' + jsVersion, 'resources/javascript/services/userSetupService.js' + jsVersion,
+                                'resources/javascript/services/restaurantSetupService.js' + jsVersion
                             ]
                         });
                 }]
@@ -277,6 +279,69 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
         }
     };
 
+    var productSetup = {
+        name  : 'root.productSetup',
+        url   : '/productSetup',
+        views : {
+            'container@' : {
+                templateUrl : 'resources/javascript/templates/productSetup.html',
+                controller : 'ProductSetupController'
+            }
+        },
+        resolve : {
+            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/controllers/productSetupController.js' + jsVersion
+                        ]
+                    });
+            }],
+            loadMyService: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/services/productSetupService.js' + jsVersion, 'resources/javascript/services/restaurantSetupService.js' + jsVersion
+
+                        ]
+                    });
+            }]
+        }
+    };
+
+    var tableSetup = {
+        name  : 'root.tableSetup',
+        url   : '/tableSetup',
+        views : {
+            'container@' : {
+                templateUrl : 'resources/javascript/templates/tableSetup.html',
+                controller : 'TableSetupController'
+            }
+        },
+        resolve : {
+            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/controllers/tableSetupController.js' + jsVersion
+                        ]
+                    });
+            }],
+            loadMyService: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/services/tableSetupService.js' + jsVersion, 'resources/javascript/services/restaurantSetupService.js' + jsVersion
+                        ]
+                    });
+            }]
+        }
+    };
+
     $stateProvider
         .state(root)
         .state(login)
@@ -285,7 +350,9 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
         .state(division)
         .state(restaurantSetup)
         .state(userSetup)
-        .state(placeOrder);
+        .state(productSetup)
+        .state(placeOrder)
+        .state(tableSetup);
 
     //set debug:true if need ocLazyLoad log
 	$ocLazyLoadProvider.config({debug:false, events:true});

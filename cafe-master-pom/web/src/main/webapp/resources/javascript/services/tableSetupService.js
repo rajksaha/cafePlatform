@@ -1,26 +1,25 @@
-app.service('RestaurantSetupService', function ($resource) {
+app.service('TableSetupService', function ($resource) {
     return {
 
-        getAll : $resource('rest/restaurant/getAll', {}, {
+        getAll : $resource('rest/tableSetup/getAll', {}, {
             'query':  {
                 method:'GET',
                 isArray:true
             }
         }),
-        getRestaurantByID : $resource('rest/restaurant/getRestaurantByID/cafeID/:cafeID', {}, {
+        getAllForSelect : $resource('rest/tableSetup/getAllForSelect', {}, {
             'query':  {
                 method:'GET',
-                params: {cafeID : '@cafeID'},
-                isArray:false
+                isArray:true
             }
         }),
-        save: $resource('rest/restaurant/save', {}, {
+        save: $resource('rest/tableSetup/save', {}, {
             'query': {
                 method: 'POST'
             }
         }),
 
-        update : $resource('rest/restaurant/update', {}, {
+        update : $resource('rest/tableSetup/update', {}, {
             'query': {
                 method  : 'POST',
                 isArray : false

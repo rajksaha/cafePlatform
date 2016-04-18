@@ -9,6 +9,8 @@ public class ProductData {
 	private String name;
 	private BigDecimal price;
 	private BigDecimal cost;
+
+	private String restaurantName;
 	
 	public Integer getProductID() {
 		return productID;
@@ -40,7 +42,12 @@ public class ProductData {
 	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
-	
-	
 
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
 }

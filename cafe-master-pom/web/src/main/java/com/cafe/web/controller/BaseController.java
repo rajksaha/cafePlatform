@@ -2,6 +2,7 @@ package com.cafe.web.controller;
 
 import com.cafe.common.exception.BfpbException;
 import com.cafe.mybatis.domain.Base;
+import com.cafe.mybatis.domain.CafeUserDetail;
 import com.itextpdf.text.DocumentException;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,20 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by mamun on 1/21/16.
+ * Created by raj on 3/20/2016.
  */
 public class BaseController {
 
-    public Object getFamsUserDetails() {
-        return (Object) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
-
-    public Object getProfile() {
-        return null;
-    }
-
-    public Integer getProfileId() {
-        return null;
+    public CafeUserDetail getCafeUserDetails() {
+        return (CafeUserDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 

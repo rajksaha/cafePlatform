@@ -10,7 +10,14 @@ app.service('ApplicationService', function ($resource) {
                 method:'GET',
                 isArray:false
             }
-        })
+        }),
+        checkAuthentication : $resource('rest/application/checkAuthentication/userName/:userName/password/:password', {}, {
+            'query':  {
+                method:'GET',
+                params: {userName : '@userName', password : '@password'},
+                isArray:false
+            }
+        }),
 
     };
 });

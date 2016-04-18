@@ -31,17 +31,19 @@
 	</update>
 	
 	<select id="getProductByID" parameterType="int" resultType="Product">
-		SELECT `productID`, `restaurantID`, `name`, `price`, `cost` 
-		FROM `product` 
-		WHERE productID = #{productID}
+		SELECT p.`productID`, p.`restaurantID`, p.`name`, p.`price`, p.`cost`, r.restaurantName
+		FROM `product` p
+		JOIN restaurant r ON p.restaurantID = r.restaurantID
+		WHERE p.productID = #{productID}
 	</select>
 	
 	<select id="getProductByParam" parameterType="map" resultType="Product">
-		SELECT `productID`, `restaurantID`, `name`, `price`, `cost` 
-		FROM `product` 
-		WHERE 1
+		SELECT p.`productID`, p.`restaurantID`, p.`name`, p.`price`, p.`cost`, r.restaurantName
+		FROM `product` p
+		JOIN restaurant r ON p.restaurantID = r.restaurantID
+		WHERE 1 = 1
 		<if test="productID != null">
-			AND productID = #{productID}
+			AND p.productID = #{productID}
 		</if>
 		<if test="name != null">
             AND LOWER(name) LIKE LOWER(CONCAT('%',#{name},'%'))
@@ -75,9 +77,9 @@
 			AND productID != #{productID}
 		</if>
 	</select>
-	
-	<delete id= "delete" parameterType="map">
-		DELETE FROM `product` 
+
+	<delete id= "delete" parameterType="Product">
+		DELETE FROM `product`
 		WHERE productID = #{productID}		
 	</delete>
 		

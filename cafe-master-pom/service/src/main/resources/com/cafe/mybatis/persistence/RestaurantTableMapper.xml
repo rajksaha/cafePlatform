@@ -31,15 +31,17 @@
 	</update>
 
 	<select id="getRestaurantTableByID" parameterType="int" resultType="RestaurantTable">
-		SELECT `tableID`, `restaurantID`, `level`, `name`, `commentOrder` 
-		FROM `restaurant_table` 
+		SELECT rt.`tableID`, rt.`restaurantID`, rt.`level`, rt.`name`, rt.`commentOrder`, r.restaurantName
+		FROM `restaurant_table` rt
+		JOIN restaurant r ON rt.restaurantID = r.restaurantID
 		WHERE tableID = #{tableID}
 	</select>
 
 	<select id="getRestaurantTableByParam" parameterType="map" resultType="RestaurantTable">
-		SELECT `tableID`, `restaurantID`, `level`, `name`, `commentOrder` 
-		FROM `restaurant_table` 
-		WHERE 1
+		SELECT rt.`tableID`, rt.`restaurantID`, rt.`level`, rt.`name`, rt.`commentOrder`, r.restaurantName
+		FROM `restaurant_table` rt
+		JOIN restaurant r ON rt.restaurantID = r.restaurantID
+		WHERE 1 = 1
 		<if test="tableID != null">
 			AND tableID = #{tableID}
 		</if>
@@ -59,8 +61,8 @@
         <if test="tableID != null">
             AND tableID = #{tableID}
         </if>
-        <if test="divisionName != null">
-            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
+        <if test="name != null">
+            AND LOWER(name) LIKE LOWER(CONCAT('%',#{name},'%'))
         </if>
     </select>
 
@@ -68,8 +70,8 @@
 		SELECT COUNT(tableID)
 		FROM `restaurant_table`
 		WHERE 1 = 1
-		<if test="divisionName != null">
-			AND LOWER(DIVISION_NAME) = LOWER(#{divisionName})
+		<if test="name != null">
+			AND LOWER(name) = LOWER(#{name})
 		</if>
 		<if test="tableID > 0">
 			AND tableID != #{tableID}

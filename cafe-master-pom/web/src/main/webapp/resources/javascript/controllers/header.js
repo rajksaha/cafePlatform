@@ -5,8 +5,7 @@ app.controller('HeaderController', function($scope, $rootScope,$state, $location
 
     $scope.logout = function () {
         AuthenticationService.logout().then(function() {
-            $rootScope.suser = {};
-            $rootScope.entityType = {};
+            $rootScope.userData = {};
             $location.path('/login');
             $scope.$emit('event:clearStatus');
         });

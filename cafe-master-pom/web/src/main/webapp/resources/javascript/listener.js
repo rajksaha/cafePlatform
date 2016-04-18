@@ -1,10 +1,9 @@
 app.run(function($rootScope, $http, $location, Base64Service,ApplicationService) {
 
 	(function() {
-        /*ApplicationService.getAppData.query().$promise.then(function(result) {
-            $rootScope.suser = result.user;
-            $rootScope.entityType = result.entityType;
-        });*/
+        ApplicationService.getAppData.query().$promise.then(function(result) {
+            $rootScope.userData = result.userData;
+        });
     })();
 	
 	/**

@@ -1,7 +1,6 @@
 package com.cafe.web.security;
 
-import com.cafe.mybatis.domain.RaydarUserDetail;
-import org.springframework.beans.factory.annotation.Value;
+import com.cafe.mybatis.domain.CafeUserDetail;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by asmrussel on 1/18/16.
+ * Created by raj on 3/20/2016.
  */
 @Component
 public class AuthenticationListener implements ApplicationListener<AbstractAuthenticationEvent> {
@@ -23,7 +22,7 @@ public class AuthenticationListener implements ApplicationListener<AbstractAuthe
 
         if (appEvent instanceof AuthenticationSuccessEvent) {
             AuthenticationSuccessEvent event = (AuthenticationSuccessEvent) appEvent;
-            RaydarUserDetail raydarUserDetail = (RaydarUserDetail) event.getAuthentication().getPrincipal();
+            CafeUserDetail cafeUserDetail = (CafeUserDetail) event.getAuthentication().getPrincipal();
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("userProfileId", null);
             params.put("logCount", 0);

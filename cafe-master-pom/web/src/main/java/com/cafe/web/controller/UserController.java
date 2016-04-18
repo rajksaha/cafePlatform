@@ -35,7 +35,8 @@ public class UserController {
     @ResponseBody
     public List<UserData> getAll(HttpServletRequest request) throws BfpbException {
 
-        return this.userService.getUserByParam(null);
+        Map<String, Object> params = null;
+        return this.userService.getUserByParam(params);
     }
 
     @RequestMapping(value = {"/save"}, method = RequestMethod.POST)

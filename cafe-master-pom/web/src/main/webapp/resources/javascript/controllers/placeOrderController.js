@@ -1,24 +1,35 @@
-app.controller('PlaceOrderController', function($scope, $rootScope, $location, $stateParams, $state, $http, $timeout, PlaceOrderService) {
+app.controller('PlaceOrderController', function($scope, $rootScope, $location, $state, $http, $timeout, PlaceOrderService, ProductSetupService, TableSetupService, UserSetupService, limitToFilter, RestaurantSetupService) {
 
     $scope.hasError = false;
     $scope.hasSuccess = false;
     $scope.message = "";
-    $scope.sector = {};
+    $scope.mainOrder = {};
     $scope.sectorList = [];
     $scope.showForm = false;
     $scope.editObj = {};
-    $scope.sectorId = $stateParams.sectorId;
 
     $scope.init = function() {
-        /*if($scope.sectorId){
-            PlaceOrderService.getSectorById.query({}, {sectorId: $scope.sectorId}).$promise.then(function(result) {
-                $scope.sector = result;
-                $scope.edit($scope.sector);
+
+        TableSetupService.getAllForSelect.query({}, {}).$promise.then(function(result) {
+            $scope.cafeTableList = result;
+        });
+
+        UserSetupService.getAll.query({}, {}).$promise.then(function(result) {
+            $scope.waiterList = result;
+        });
+
+        RestaurantSetupService.getRestaurantByID.query({}, {cafeID : 1}).$promise.then(function(result) {
+            $scope.cafeData = result;
+        });
+    };
+
+    $scope.getProductName = function(term) {
+
+            return  ProductSetupService.getProductForTypeHead.query({}, {data : term}).$promise.then(function(result) {
+                $scope.productList = result;
+                return limitToFilter($scope.productList, 10);
             });
-        }
-        PlaceOrderService.getAllSector.query({}, {}).$promise.then(function(result) {
-            $scope.sectorList = result;
-        });*/
+
     };
 
     $scope.save = function(sector) {
@@ -95,17 +106,45 @@ app.controller('PlaceOrderController', function($scope, $rootScope, $location, $
     };
 
     $scope.add = function(){
-        $scope.editObj = {};
-        $scope.reset();
-        $scope.showForm = true;
+
+        if($scope.mainOrder.orderByProductList == undefined){
+            $scope.mainOrder.orderByProductList = [];
+        }
+        $scope.mainOrder.orderByProductList.push({});
+    };
+
+    $scope.onSelectProductName = function(item, model, label, orderByProduct){
+
+        orderByProduct.price = item.price;
     };
 
     $scope.cancel = function(){
-        if($scope.sectorId){
-            $state.go("setupmenu.subSector");
-        }
         $scope.reset();
         $scope.showForm = false;
+    };
+
+    $scope.calculatePrice = function(mainOrder){
+
+        var sum = 0;
+        angular.forEach(mainOrder.orderByProductList, function(value, key) {
+            if(value.price != undefined){
+                sum = sum + (value.price * value.quantity);
+            }
+        });
+
+        mainOrder.netAmount = sum;
+        mainOrder.gstRate = mainOrder.netAmount * $scope.cafeData.gstRate;
+        mainOrder.subTotal = mainOrder.netAmount + mainOrder.gstRate;
+        $scope.calculateDiscount(mainOrder,mainOrder.subTotal);
+    };
+
+    $scope.calculateDiscount = function (mainOrder , subTotal){
+
+        if(mainOrder.discount != undefined){
+            mainOrder.discountedAmount = subTotal * mainOrder.discount;
+            mainOrder.total = subTotal - mainOrder.discountedAmount;
+        }
+
     };
 
     $scope.init();

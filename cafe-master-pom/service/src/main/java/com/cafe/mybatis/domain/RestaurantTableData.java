@@ -7,6 +7,8 @@ public class RestaurantTableData {
 	private Integer level;
 	private String name;
 	private String commentOrder;
+
+	private String restaurantName;
 	
 	public Integer getTableID() {
 		return tableID;
@@ -38,7 +40,12 @@ public class RestaurantTableData {
 	public void setCommentOrder(String commentOrder) {
 		this.commentOrder = commentOrder;
 	}
-	
-	
 
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
 }

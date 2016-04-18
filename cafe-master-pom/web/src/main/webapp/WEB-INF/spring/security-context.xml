@@ -11,11 +11,11 @@
 
 	<context:component-scan base-package="com.cafe.web.security" />
 	<security:global-method-security pre-post-annotations="enabled"/>
-	<beans:bean id="bfpbUserDetailsService" class="com.cafe.web.security.BfpbUserDetailsService" />
+	<beans:bean id="cafeUserDetailsService" class="com.cafe.web.security.CafeUserDetailsService" />
 	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<security:authentication-manager alias="authenticationManager" erase-credentials="true">
-		<security:authentication-provider user-service-ref="bfpbUserDetailsService">
+		<security:authentication-provider user-service-ref="cafeUserDetailsService">
 			<security:password-encoder ref="encoder"></security:password-encoder>
 		</security:authentication-provider>
 	</security:authentication-manager>

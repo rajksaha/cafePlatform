@@ -46,6 +46,16 @@
 		FROM `user` WHERE userID = #{userID};
 	</select>
 
+	<select id="getUserByUserName" parameterType="string" resultType="UserData">
+		SELECT `userID`,
+		`restaurantID`,
+		`level`,
+		`name`,
+		`username`,
+		`password`
+		FROM `user` WHERE username = #{username};
+	</select>
+
 	<select id="getUserByParam" parameterType="map" resultType="UserData">
 		SELECT
 			u.`userID`,

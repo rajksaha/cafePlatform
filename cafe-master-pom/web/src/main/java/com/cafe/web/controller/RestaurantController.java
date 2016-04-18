@@ -1,16 +1,14 @@
 package com.cafe.web.controller;
 
 import com.cafe.common.exception.BfpbException;
+import com.cafe.mybatis.domain.ProductData;
 import com.cafe.mybatis.domain.RestaurantData;
 import com.cafe.service.RestaurantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -34,6 +32,13 @@ public class RestaurantController {
     public List<RestaurantData> getAll(HttpServletRequest request) throws BfpbException {
 
         return this.restaurantService.getRestaurantByParam(null);
+    }
+
+    @RequestMapping(value = {"/getRestaurantByID/cafeID/{cafeID}"}, method = RequestMethod.GET)
+    @ResponseBody
+    public RestaurantData getRestaurantByID(@PathVariable("cafeID") Integer cafeID, HttpServletRequest request) throws BfpbException{
+        RestaurantData restaurantData = this.restaurantService.getRestaurantByID(cafeID);
+        return restaurantData;
     }
 
     @RequestMapping(value = {"/save"}, method = RequestMethod.POST)

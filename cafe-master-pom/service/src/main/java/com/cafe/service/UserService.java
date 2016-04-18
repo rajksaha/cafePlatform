@@ -6,6 +6,7 @@ import com.cafe.mybatis.domain.UserData;
 import com.cafe.mybatis.persistence.RestaurantMapper;
 import com.cafe.mybatis.persistence.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,10 +23,14 @@ public class UserService {
 
 
     public void create(UserData data) throws BfpbException {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        data.setPassword(passwordEncoder.encode(data.getPassword()));
         this.userMapper.create(data);
     }
 
     public void update(UserData data) throws BfpbException {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        data.setPassword(passwordEncoder.encode(data.getPassword()));
         this.userMapper.update(data);
     }
     
@@ -47,5 +52,9 @@ public class UserService {
 
     public Integer getDuplicateCount(Map<String, Object> params) throws BfpbException {
         return this.userMapper.getDuplicateCount(params);
+    }
+
+    public UserData getUserByUserName(String userName) throws BfpbException{
+        return this.userMapper.getUserByUserName(userName);
     }
 }

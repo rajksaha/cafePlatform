@@ -10,11 +10,8 @@
     <div class="col-md-6 col-lg-6" >
         <div class="form-group">
             <label>Order Table<span class="text-red">*</span></label>
-            <select class="form-control input-sm required" data-ng-model="order.tableID">
+            <select class="form-control input-sm required" data-ng-model="mainOrder.tableID" data-ng-options="table.tableID as table.name for table  in cafeTableList">
                 <option value="">--Select--</option>
-                <option value="1">Table 1</option>
-                <option value="2">Table 2</option>
-                <option value="3">Table 3</option>
             </select>
             <div class="validationErrMsg small text-danger mt-5 hidden"></div>
         </div>
@@ -23,41 +20,95 @@
     <div class="col-md-6 col-lg-6" >
         <div class="form-group">
             <label>Waiter<span class="text-red">*</span></label>
-            <select class="form-control input-sm required" data-ng-model="order.waiterID">
+            <select class="form-control input-sm required" data-ng-model="mainOrder.userID" data-ng-options="waiter.userID as waiter.name for waiter  in waiterList">
                 <option value="">--Select--</option>
-                <option value="1">Waiter 1</option>
-                <option value="2">Waiter 2</option>
-                <option value="3">Waiter 3</option>
             </select>
             <div class="validationErrMsg small text-danger mt-5 hidden"></div>
         </div>
     </div>
 
-    <div class="col-md-6 col-lg-6" >
-        <div class="form-group">
-            <label>Product<span class="text-red">*</span></label>
-            <select class="form-control input-sm required" data-ng-model="order.productID">
-                <option value="">--Select--</option>
-                <option value="1">Product 1</option>
-                <option value="2">Product 2</option>
-                <option value="3">Product 3</option>
-            </select>
-            <div class="validationErrMsg small text-danger mt-5 hidden"></div>
-        </div>
-    </div>
+</div>
 
-    <div class="col-md-1 col-lg-1" >
-        <div class="form-group">
-            <label>Qnt<span class="text-red">*</span></label>
-            <select class="form-control input-sm required" data-ng-model="order.amount">
-                <option value="">--Select--</option>
-                <option value="1"> 1</option>
-                <option value="2"> 2</option>
-                <option value="3"> 3</option>
-            </select>
-            <div class="validationErrMsg small text-danger mt-5 hidden"></div>
-        </div>
+<div class="panel panel-default mt-15">
+    <div class="panel-heading clearfix">
+        <strong>Order List</strong>
+        <button class="btn btn-sm btn-success pull-right" data-ng-click="add()"><span class="fa fa-plus"></span> Add Item</button>
     </div>
+    <table class="table table-bordered table-condensed table-striped table-hover fams-table">
+        <thead>
+        <tr class="bg-primary">
+            <th width="8%">Sl</th>
+            <th>Product Name</th>
+            <th>Qnt</th>
+            <th>Price</th>
+            <th width="10%">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="orderByProduct in mainOrder.orderByProductList">
+            <td>{{$index + 1}}</td>
+            <td>
+                <input type="text" data-ng-model="orderByProduct.productID" typeahead="productList.name for productList in getProductName($viewValue)"  class="form-control required" placeholder="Add Products" typeahead-on-select='onSelectProductName($item, $model, $label, orderByProduct)'/>
+            </td>
+            <td>
+                <select class="form-control input-sm required" data-ng-model="orderByProduct.quantity" data-ng-change="calculatePrice(mainOrder)">
+                    <option value="">--Select--</option>
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                    <option value="5"> 5</option>
+                    <option value="6"> 6</option>
+                </select>
+            </td>
+            <td>{{orderByProduct.price}} RM</td>
+            <td>
+                <a href="" class="clearfix" data-ng-click="edit(userData)"><span class="fa fa-pencil-square-o"></span> Edit</a>
+            </td>
+        </tr>
 
+        <tr data-ng-if="mainOrder.orderByProductList.length > 0">
+            <th></th>
+            <th></th>
+            <th>Net Amount : </th>
+            <th>{{mainOrder.netAmount | currency :''}}</th>
+            <th></th>
+        </tr>
+        <tr data-ng-if="mainOrder.orderByProductList.length > 0 && cafeData.useGst">
+            <th></th>
+            <th></th>
+            <th>GST {{cafeData.gstRate}} : {{mainOrder.gstRate}}</th>
+            <th>{{mainOrder.subTotal | currency :''}} </th>
+            <th></th>
+        </tr>
+        <tr data-ng-if="mainOrder.orderByProductList.length > 0">
+            <th></th>
+            <th></th>
+            <th>
+                <label>
+                    Discount : {{mainOrder.discountedAmount | currency :''}}
+                </label>
+                <select class="form-control input-sm" data-ng-model="mainOrder.discount" data-ng-change="calculateDiscount(mainOrder, mainOrder.subTotal)" >
+                    <option value="">--Select--</option>
+                    <option value=".5">5%</option>
+                    <option value=".10">10%</option>
+                    <option value=".15">15%</option>
+                </select>
+            </th>
+            <th>{{mainOrder.total | currency :''}}</th>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<div class="panel-footer">
+    <div class="text-right">
+        <button class="btn btn-sm btn-warning" data-ng-click="reset()"><span class="fa fa-undo"></span> Print</button>
+        <button class="btn btn-sm btn-success" data-ng-click="save(mainOrder)" data-ng-hide="mainOrder.orderID > 0"><span class="fa fa-floppy-o"></span> Save</button>
+        <button class="btn btn-sm btn-success" data-ng-click="update(mainOrder)" data-ng-show="mainOrder.orderID > 0"><span class="fa fa-floppy-o"></span> Update</button>
+        <button class="btn btn-sm btn-danger" data-ng-click="cancel()"><span class="fa fa-times"></span> Cancel</button>
+    </div>
 </div>
 
