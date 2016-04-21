@@ -1,7 +1,6 @@
 package com.cafe.web.controller;
 
-import com.cafe.common.exception.BfpbException;
-import com.cafe.mybatis.domain.ProductData;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.RestaurantData;
 import com.cafe.service.RestaurantService;
 import org.slf4j.Logger;
@@ -29,21 +28,21 @@ public class RestaurantController {
 
     @RequestMapping(value = {"/getAll"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<RestaurantData> getAll(HttpServletRequest request) throws BfpbException {
+    public List<RestaurantData> getAll(HttpServletRequest request) throws CafeException {
 
         return this.restaurantService.getRestaurantByParam(null);
     }
 
     @RequestMapping(value = {"/getRestaurantByID/cafeID/{cafeID}"}, method = RequestMethod.GET)
     @ResponseBody
-    public RestaurantData getRestaurantByID(@PathVariable("cafeID") Integer cafeID, HttpServletRequest request) throws BfpbException{
+    public RestaurantData getRestaurantByID(@PathVariable("cafeID") Integer cafeID, HttpServletRequest request) throws CafeException {
         RestaurantData restaurantData = this.restaurantService.getRestaurantByID(cafeID);
         return restaurantData;
     }
 
     @RequestMapping(value = {"/save"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> save(@RequestBody RestaurantData data) throws BfpbException {
+    public Map<String, Object> save(@RequestBody RestaurantData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(data)) {
@@ -57,7 +56,7 @@ public class RestaurantController {
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> update(@RequestBody RestaurantData data) throws BfpbException {
+    public Map<String, Object> update(@RequestBody RestaurantData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(data)) {
@@ -69,7 +68,7 @@ public class RestaurantController {
         return result;
     }
 
-    private boolean isDuplicate(RestaurantData data) throws BfpbException {
+    private boolean isDuplicate(RestaurantData data) throws CafeException {
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("restaurantID", data.getRestaurantID());
         param.put("restaurantName", data.getRestaurantName());

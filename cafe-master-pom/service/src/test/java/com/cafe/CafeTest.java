@@ -1,9 +1,7 @@
 package com.cafe;
 
-import com.cafe.common.exception.BfpbException;
 import com.cafe.mybatis.domain.RestaurantData;
 import com.cafe.service.RestaurantService;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -13,16 +11,16 @@ import java.math.BigDecimal;
  */
 public class CafeTest extends BaseTest {
 
-   /* RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
+    /*RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
 
 
     //@Ignore
     @Test
-    public void save() throws BfpbException {
+    public void save()  {
         RestaurantData restaurantData = new RestaurantData();
         restaurantData.setRestaurantName("Raj's cafe");
         restaurantData.setUseGst(1);
         restaurantData.setGstRate(BigDecimal.valueOf(0.15));
-        restaurantService.create(restaurantData);
+        //restaurantService.create(restaurantData);
     }*/
 }

@@ -1,6 +1,6 @@
 package com.cafe.service;
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.UserGroupPermissionData;
 import com.cafe.mybatis.persistence.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class UserPermissionService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<UserGroupPermissionData> getUserPermissionByUserID (Integer userID) throws BfpbException {
+    public List<UserGroupPermissionData> getUserPermissionByUserID (Integer userID) throws CafeException {
         return null;
     }
 }

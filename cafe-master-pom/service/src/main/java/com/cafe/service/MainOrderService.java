@@ -6,12 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.OrderByProductData;
 import com.cafe.mybatis.persistence.OrderByProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cafe.common.exception.BfpbException;
 import com.cafe.mybatis.domain.MainOrderData;
 import com.cafe.mybatis.persistence.MainOrderMapper;
 
@@ -25,7 +25,7 @@ public class MainOrderService {
 	private OrderByProductMapper orderByProductMapper;
 
 
-	    public void create(MainOrderData data) throws BfpbException {
+	    public void create(MainOrderData data) throws CafeException {
 			Date date = new Date();
 			data.setDate(date);
 			date.getTime();
@@ -37,14 +37,14 @@ public class MainOrderService {
 			}
 	    }
 
-	    public void update(MainOrderData data) throws BfpbException {
+	    public void update(MainOrderData data) throws CafeException {
 	        this.mainOrderMapper.update(data);
 			if(data.getSubOrderList() != null){
 				this.addOrUpdateSubOrder(data);
 			}
 	    }
 
-	private void addOrUpdateSubOrder(MainOrderData mainOrderData)throws BfpbException{
+	private void addOrUpdateSubOrder(MainOrderData mainOrderData)throws CafeException {
 
 		for(OrderByProductData subOrder : mainOrderData.getSubOrderList()){
 
@@ -57,23 +57,23 @@ public class MainOrderService {
 		}
 	}
 	    
-	    public Integer delete(Map<String, Object> params) throws BfpbException {
+	    public Integer delete(Map<String, Object> params) throws CafeException {
 	    	return this.mainOrderMapper.delete(params);
 	    }
 
-	    public List<MainOrderData> getMainOrderByParam(Map<String, Object> params) throws BfpbException {
+	    public List<MainOrderData> getMainOrderByParam(Map<String, Object> params) throws CafeException {
 	        return this.mainOrderMapper.getMainOrderByParam(params);
 	    }
 
-	    public Integer getMainOrderCountByParam(Map<String, Object> params) throws BfpbException {
+	    public Integer getMainOrderCountByParam(Map<String, Object> params) throws CafeException {
 	        return this.mainOrderMapper.getMainOrderCountByParam(params);
 	    }
 
-	    public MainOrderData getMainOrderByID(Integer orderID) throws BfpbException {
+	    public MainOrderData getMainOrderByID(Integer orderID) throws CafeException {
 	        return this.mainOrderMapper.getMainOrderByID(orderID);
 	    }
 
-	    public Integer getDuplicateCount(Map<String, Object> params) throws BfpbException {
+	    public Integer getDuplicateCount(Map<String, Object> params) throws CafeException {
 	        return this.mainOrderMapper.getDuplicateCount(params);
 	    }
 

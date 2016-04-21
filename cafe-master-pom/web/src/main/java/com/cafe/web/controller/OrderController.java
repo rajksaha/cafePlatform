@@ -1,8 +1,7 @@
 package com.cafe.web.controller;
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.MainOrderData;
-import com.cafe.mybatis.domain.ProductData;
 import com.cafe.service.MainOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class OrderController extends BaseController{
 
     @RequestMapping(value = {"/save"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> save(@RequestBody MainOrderData data) throws BfpbException {
+    public Map<String, Object> save(@RequestBody MainOrderData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         data.setUserID(this.getCafeUserDetails().getLoggedInUserdata().getUserID());
@@ -38,7 +37,7 @@ public class OrderController extends BaseController{
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> update(@RequestBody MainOrderData data) throws BfpbException {
+    public Map<String, Object> update(@RequestBody MainOrderData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         this.mainOrderService.update(data);

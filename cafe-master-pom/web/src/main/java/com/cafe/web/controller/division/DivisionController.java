@@ -1,8 +1,7 @@
 package com.cafe.web.controller.division;
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.Division;
-import com.cafe.mybatis.domain.UserGroupPermissionData;
 import com.cafe.service.DivisionService;
 import com.cafe.service.UserPermissionService;
 import com.cafe.web.controller.BaseController;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,7 +36,7 @@ public class DivisionController extends BaseController {
 
     @RequestMapping(value = {"/getAll"}, method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getAll(HttpServletRequest request) throws BfpbException {
+    public Map<String, Object> getAll(HttpServletRequest request) throws CafeException {
         Map<String, Object> params = this.parseParameter(request);
         /*List<Division> divisions = this.divisionService.getDivisionByParam(params);
         Integer count = this.divisionService.getDivisionCountByParam(params);*/
@@ -49,7 +47,7 @@ public class DivisionController extends BaseController {
 
     @RequestMapping(value = {"/save"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> save(@RequestBody Division division) throws BfpbException {
+    public Map<String, Object> save(@RequestBody Division division) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(division)) {
@@ -63,7 +61,7 @@ public class DivisionController extends BaseController {
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> update(@RequestBody Division division) throws BfpbException {
+    public Map<String, Object> update(@RequestBody Division division) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(division)) {
@@ -75,7 +73,7 @@ public class DivisionController extends BaseController {
         return result;
     }
 
-    private boolean isDuplicate(Division division) throws BfpbException {
+    private boolean isDuplicate(Division division) throws CafeException {
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("divisionId", division.getDivisionId());
         param.put("divisionName", division.getDivisionName());

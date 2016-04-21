@@ -1,6 +1,6 @@
 package com.cafe.web.controller;
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.ProductData;
 import com.cafe.service.ProductService;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ public class ProductController extends BaseController{
 
     @RequestMapping(value = {"/getAll"}, method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getAll(HttpServletRequest request) throws BfpbException {
+    public Map<String, Object> getAll(HttpServletRequest request) throws CafeException {
 
         Map<String, Object> params = this.parseParameter(request);
         if(getCafeUserDetails() != null){
@@ -41,7 +41,7 @@ public class ProductController extends BaseController{
 
     @RequestMapping(value = {"/getProductForTypeHead/data/{data}"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<ProductData> getAll(@PathVariable("data") String data, HttpServletRequest request) throws BfpbException{
+    public List<ProductData> getAll(@PathVariable("data") String data, HttpServletRequest request) throws CafeException {
 
         Map<String, Object> params = new HashMap<>();
         params.put("name" , data);
@@ -54,7 +54,7 @@ public class ProductController extends BaseController{
 
     @RequestMapping(value = {"/getAllForSelect"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<ProductData> getAllForSelect(HttpServletRequest request) throws BfpbException {
+    public List<ProductData> getAllForSelect(HttpServletRequest request) throws CafeException {
 
         Map<String, Object> params = null;
         List<ProductData> productList = this.productService.getProductByParam(params);
@@ -64,7 +64,7 @@ public class ProductController extends BaseController{
 
     @RequestMapping(value = {"/save"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> save(@RequestBody ProductData data) throws BfpbException {
+    public Map<String, Object> save(@RequestBody ProductData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(data)) {
@@ -78,7 +78,7 @@ public class ProductController extends BaseController{
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> update(@RequestBody ProductData data) throws BfpbException {
+    public Map<String, Object> update(@RequestBody ProductData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(data)) {
@@ -90,7 +90,7 @@ public class ProductController extends BaseController{
         return result;
     }
 
-    private boolean isDuplicate(ProductData data) throws BfpbException {
+    private boolean isDuplicate(ProductData data) throws CafeException {
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("productID", data.getProductID());
         param.put("name", data.getName());

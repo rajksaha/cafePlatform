@@ -1,26 +1,24 @@
 package com.cafe.mybatis.persistence;
 
-import com.cafe.common.exception.BfpbException;
-import com.cafe.mybatis.domain.Division;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.ProductData;
-import com.cafe.mybatis.domain.RestaurantData;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ProductMapper {
 
-    void create(ProductData data) throws BfpbException;
+    void create(ProductData data) throws CafeException;
 
-    void update(ProductData data) throws BfpbException;
+    void update(ProductData data) throws CafeException;
 
-    List<ProductData> getProductByParam(Map<String, Object> params) throws BfpbException;
+    List<ProductData> getProductByParam(Map<String, Object> params) throws CafeException;
 
-    Integer getProductCountByParam(Map<String, Object> params) throws BfpbException;
+    Integer getProductCountByParam(Map<String, Object> params) throws CafeException;
 
-    ProductData getProductByID(Integer productID) throws BfpbException;
+    ProductData getProductByID(Integer productID) throws CafeException;
 
-    Integer getDuplicateCount(Map<String, Object> params) throws BfpbException;
+    Integer getDuplicateCount(Map<String, Object> params) throws CafeException;
     
-    Integer delete(Map<String, Object> params) throws BfpbException;
+    Integer delete(Map<String, Object> params) throws CafeException;
 }

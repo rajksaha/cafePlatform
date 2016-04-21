@@ -1,7 +1,7 @@
 package com.cafe.common.utility;
 
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -57,7 +57,7 @@ public class BFPBFileUtils {
         }
     }
 
-    public static Map<String, Object> saveFile(Attachment attachment) throws BfpbException {
+    public static Map<String, Object> saveFile(Attachment attachment) throws CafeException {
 
         Map<String, Object> param = new HashMap<String, Object>();
         String url = getContentRootForImages();

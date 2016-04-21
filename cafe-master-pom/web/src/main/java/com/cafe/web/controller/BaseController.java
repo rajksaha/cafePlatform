@@ -1,6 +1,6 @@
 package com.cafe.web.controller;
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.Base;
 import com.cafe.mybatis.domain.CafeUserDetail;
 import com.itextpdf.text.DocumentException;
@@ -88,7 +88,7 @@ public class BaseController {
         return resultMap;
     }
 
-    public void exportToExcel(HttpServletResponse response,Workbook wb,String reportName) throws BfpbException, IOException {
+    public void exportToExcel(HttpServletResponse response,Workbook wb,String reportName) throws CafeException, IOException {
 
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.addHeader("Pragma", "No-cache");
@@ -106,7 +106,7 @@ public class BaseController {
         outStream.close();
     }
 
-    public void exportToPdf(HttpServletResponse response,ByteArrayOutputStream baos,String reportName) throws BfpbException, IOException, DocumentException {
+    public void exportToPdf(HttpServletResponse response,ByteArrayOutputStream baos,String reportName) throws CafeException, IOException, DocumentException {
 
         response.setContentLength(baos.size());
         response.setHeader("Expires", "0");

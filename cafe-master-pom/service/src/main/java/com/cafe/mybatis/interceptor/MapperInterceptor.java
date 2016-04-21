@@ -1,7 +1,7 @@
 package com.cafe.mybatis.interceptor;
 
 import com.cafe.common.audit.Auditable;
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.context.AppContextManager;
 import com.cafe.mybatis.domain.Audit;
 import com.cafe.mybatis.domain.Base;
@@ -54,7 +54,7 @@ public class MapperInterceptor implements Interceptor {
         }
     }
 
-    private void createAudit(MappedStatement stmt, Auditable auditData) throws BfpbException {
+    private void createAudit(MappedStatement stmt, Auditable auditData) throws CafeException {
         Audit audit = new Audit();
         String jsonValue = JsonConverter.convertObjectToJson(auditData);
 

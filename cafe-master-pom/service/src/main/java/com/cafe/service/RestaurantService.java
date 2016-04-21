@@ -1,12 +1,8 @@
 package com.cafe.service;
 
-import com.cafe.common.exception.BfpbException;
-import com.cafe.mybatis.domain.Division;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.RestaurantData;
-import com.cafe.mybatis.domain.UserGroupPermissionData;
-import com.cafe.mybatis.persistence.DivisionMapper;
 import com.cafe.mybatis.persistence.RestaurantMapper;
-import com.cafe.mybatis.persistence.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,31 +19,31 @@ public class RestaurantService {
     private RestaurantMapper restaurantMapper;
 
 
-    public void create(RestaurantData data) throws BfpbException {
+    public void create(RestaurantData data) throws CafeException {
         this.restaurantMapper.create(data);
     }
 
-    public void update(RestaurantData data) throws BfpbException {
+    public void update(RestaurantData data) throws CafeException {
         this.restaurantMapper.update(data);
     }
     
-    public Integer delete(Map<String, Object> params) throws BfpbException {
+    public Integer delete(Map<String, Object> params) throws CafeException {
     	return this.restaurantMapper.delete(params);
     }
 
-    public List<RestaurantData> getRestaurantByParam(Map<String, Object> params) throws BfpbException {
+    public List<RestaurantData> getRestaurantByParam(Map<String, Object> params) throws CafeException {
         return this.restaurantMapper.getRestaurantByParam(params);
     }
 
-    public Integer getRestaurantCountByParam(Map<String, Object> params) throws BfpbException {
+    public Integer getRestaurantCountByParam(Map<String, Object> params) throws CafeException {
         return this.restaurantMapper.getRestaurantCountByParam(params);
     }
 
-    public RestaurantData getRestaurantByID(Integer RestaurantID) throws BfpbException {
+    public RestaurantData getRestaurantByID(Integer RestaurantID) throws CafeException {
         return this.restaurantMapper.getRestaurantByID(RestaurantID);
     }
 
-    public Integer getDuplicateCount(Map<String, Object> params) throws BfpbException {
+    public Integer getDuplicateCount(Map<String, Object> params) throws CafeException {
         return this.restaurantMapper.getDuplicateCount(params);
     }
 }

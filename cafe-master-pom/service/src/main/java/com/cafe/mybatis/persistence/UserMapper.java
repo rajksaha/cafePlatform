@@ -1,9 +1,7 @@
 package com.cafe.mybatis.persistence;
 
-import com.cafe.common.exception.BfpbException;
-import com.cafe.mybatis.domain.RestaurantData;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.UserData;
-import com.cafe.mybatis.domain.UserGroupPermissionData;
 
 import java.util.List;
 import java.util.Map;
@@ -14,19 +12,19 @@ import java.util.Map;
 public interface UserMapper {
 
 
-    void create(UserData data) throws BfpbException;
+    void create(UserData data) throws CafeException;
 
-    void update(UserData data) throws BfpbException;
+    void update(UserData data) throws CafeException;
 
-    List<UserData> getUserByParam(Map<String, Object> params) throws BfpbException;
+    List<UserData> getUserByParam(Map<String, Object> params) throws CafeException;
 
-    Integer getUserCountByParam(Map<String, Object> params) throws BfpbException;
+    Integer getUserCountByParam(Map<String, Object> params) throws CafeException;
 
-    UserData getUserByID(Integer userID) throws BfpbException;
+    UserData getUserByID(Integer userID) throws CafeException;
 
-    Integer getDuplicateCount(Map<String, Object> params) throws BfpbException;
+    Integer getDuplicateCount(Map<String, Object> params) throws CafeException;
 
-    Integer delete(Map<String, Object> params) throws BfpbException;
+    Integer delete(Map<String, Object> params) throws CafeException;
 
-    UserData getUserByUserName(String username) throws BfpbException;
+    UserData getUserByUserName(String username) throws CafeException;
 }

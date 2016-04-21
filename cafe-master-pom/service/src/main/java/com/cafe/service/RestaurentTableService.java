@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.RestaurantTableData;
 import com.cafe.mybatis.persistence.RestaurantTableMapper;
 
@@ -17,31 +17,31 @@ public class RestaurentTableService {
 	 private RestaurantTableMapper restaurentTableMapper;
 
 
-	    public void create(RestaurantTableData data) throws BfpbException {
+	    public void create(RestaurantTableData data) throws CafeException {
 	        this.restaurentTableMapper.create(data);
 	    }
 
-	    public void update(RestaurantTableData data) throws BfpbException {
+	    public void update(RestaurantTableData data) throws CafeException {
 	        this.restaurentTableMapper.update(data);
 	    }
 	    
-	    public Integer delete(Map<String, Object> params) throws BfpbException {
+	    public Integer delete(Map<String, Object> params) throws CafeException {
 	    	return this.restaurentTableMapper.delete(params);
 	    }
 
-	    public List<RestaurantTableData> getRestaurantTableByParam(Map<String, Object> params) throws BfpbException {
+	    public List<RestaurantTableData> getRestaurantTableByParam(Map<String, Object> params) throws CafeException {
 	        return this.restaurentTableMapper.getRestaurantTableByParam(params);
 	    }
 
-	    public Integer getRestaurantTableCountByParam(Map<String, Object> params) throws BfpbException {
+	    public Integer getRestaurantTableCountByParam(Map<String, Object> params) throws CafeException {
 	        return this.restaurentTableMapper.getRestaurantTableCountByParam(params);
 	    }
 
-	    public RestaurantTableData getWaiterByID(Integer tableID) throws BfpbException {
+	    public RestaurantTableData getWaiterByID(Integer tableID) throws CafeException {
 	        return this.restaurentTableMapper.getRestaurantTableByID(tableID);
 	    }
 
-	    public Integer getDuplicateCount(Map<String, Object> params) throws BfpbException {
+	    public Integer getDuplicateCount(Map<String, Object> params) throws CafeException {
 	        return this.restaurentTableMapper.getDuplicateCount(params);
 	    }
 

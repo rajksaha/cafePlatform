@@ -1,9 +1,7 @@
 package com.cafe.web.controller;
 
-import com.cafe.common.exception.BfpbException;
-import com.cafe.mybatis.domain.RestaurantData;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.UserData;
-import com.cafe.service.RestaurantService;
 import com.cafe.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +31,7 @@ public class UserController {
 
     @RequestMapping(value = {"/getAll"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<UserData> getAll(HttpServletRequest request) throws BfpbException {
+    public List<UserData> getAll(HttpServletRequest request) throws CafeException {
 
         Map<String, Object> params = null;
         return this.userService.getUserByParam(params);
@@ -41,7 +39,7 @@ public class UserController {
 
     @RequestMapping(value = {"/save"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> save(@RequestBody UserData data) throws BfpbException {
+    public Map<String, Object> save(@RequestBody UserData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(data)) {
@@ -55,7 +53,7 @@ public class UserController {
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> update(@RequestBody UserData data) throws BfpbException {
+    public Map<String, Object> update(@RequestBody UserData data) throws CafeException {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         if(isDuplicate(data)) {
@@ -67,7 +65,7 @@ public class UserController {
         return result;
     }
 
-    private boolean isDuplicate(UserData data) throws BfpbException {
+    private boolean isDuplicate(UserData data) throws CafeException {
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("userID", data.getUserID());
         param.put("userName", data.getUsername());

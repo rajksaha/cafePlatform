@@ -1,16 +1,14 @@
 package com.cafe.web.security;
 
-import com.cafe.common.exception.BfpbException;
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.CafeUserDetail;
 import com.cafe.mybatis.domain.UserData;
 import com.cafe.service.UserService;
-import org.apache.commons.lang.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,7 +31,7 @@ public class CafeUserDetailsService implements UserDetailsService {
         UserData user = null;
         try {
             user = userService.getUserByUserName(username);
-        } catch (BfpbException e) {
+        } catch (CafeException e) {
             throw new BadCredentialsException("System error");
         }
 
