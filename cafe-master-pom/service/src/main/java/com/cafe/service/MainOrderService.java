@@ -15,6 +15,13 @@ import org.springframework.stereotype.Service;
 import com.cafe.mybatis.domain.MainOrderData;
 import com.cafe.mybatis.persistence.MainOrderMapper;
 
+/**
+ * 
+ * @author Farzia on 4/10/16
+ * @version 1.0
+ *
+ */ 
+
 @Service
 public class MainOrderService {
 	
@@ -24,6 +31,12 @@ public class MainOrderService {
 	@Autowired
 	private OrderByProductMapper orderByProductMapper;
 
+	/**
+	 * create new MainOrderData
+	 * @param MainOrderData mainorderData
+	 * @return void
+	 * @throws CafeException
+	 **/
 
 	    public void create(MainOrderData data) throws CafeException {
 			Date date = new Date();
@@ -37,12 +50,27 @@ public class MainOrderService {
 			}
 	    }
 
+	    
+	    /**
+		 * update MainOrderData
+		 * @param MainOrderData
+		 * @return void
+		 * @throws CafeException
+		 **/
+	    
 	    public void update(MainOrderData data) throws CafeException {
 	        this.mainOrderMapper.update(data);
 			if(data.getSubOrderList() != null){
 				this.addOrUpdateSubOrder(data);
 			}
 	    }
+	    
+	    /**
+		 * add/update SubOrder
+		 * @param MainOrderData mainorderData
+		 * @return void
+		 * @throws CafeException
+		 **/
 
 	private void addOrUpdateSubOrder(MainOrderData mainOrderData)throws CafeException {
 
@@ -56,23 +84,60 @@ public class MainOrderService {
 			}
 		}
 	}
+	
+	/**
+	 * delete MainOrder
+	 * @param HashMap
+	 * @return Integer
+	 * @throws CafeException
+	 **/
 	    
 	    public Integer delete(Map<String, Object> params) throws CafeException {
 	    	return this.mainOrderMapper.delete(params);
 	    }
+	    
+	    /**
+		 * gets MainOrderData by parm
+		 * @param HashMap
+		 * @return List
+		 * @throws CafeException
+		 **/
+
 
 	    public List<MainOrderData> getMainOrderByParam(Map<String, Object> params) throws CafeException {
 	        return this.mainOrderMapper.getMainOrderByParam(params);
 	    }
 
+	    /**
+		 * gets MainOrder count by parm
+		 * @param HashMap
+		 * @return Integer
+		 * @throws CafeException
+		 **/
+	    
+	    
 	    public Integer getMainOrderCountByParam(Map<String, Object> params) throws CafeException {
 	        return this.mainOrderMapper.getMainOrderCountByParam(params);
 	    }
 
+	    /**
+		 * gets MainOrder by id
+		 * @param orderID
+		 * @return OrderData
+		 * @throws CafeException
+		 **/
+	    
 	    public MainOrderData getMainOrderByID(Integer orderID) throws CafeException {
 	        return this.mainOrderMapper.getMainOrderByID(orderID);
 	    }
 
+	    /**
+		 * counts duplicate MainOrder
+		 * @param HashMap
+		 * @return Integer
+		 * @throws CafeException
+		 **/
+	    
 	    public Integer getDuplicateCount(Map<String, Object> params) throws CafeException {
 	        return this.mainOrderMapper.getDuplicateCount(params);
 	    }

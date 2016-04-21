@@ -14,6 +14,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 
+ * @author Salis on 4/12/16
+ * @version 1.0
+ *
+ */
+
 @Service
 public class ProductService {
 
@@ -21,7 +28,6 @@ public class ProductService {
 	private ProductMapper productMapper;
 
 	/**
-	 * Author: farzia
 	 * create new Product
 	 * @param ProductData productData
 	 * @return void
@@ -33,7 +39,6 @@ public class ProductService {
 	}
 
 	/**
-	 * Author: farzia
 	 * update Product
 	 * @param ProductData productData
 	 * @return void
@@ -45,7 +50,6 @@ public class ProductService {
 	}
 
 	/**
-	 * Author: farzia
 	 * delete Product
 	 * @param HashMap
 	 * @return Integer
@@ -58,7 +62,6 @@ public class ProductService {
 	}
 
 	/**
-	 * Author: farzia
 	 * gets Product by parm
 	 * @param HashMap
 	 * @return List
@@ -70,7 +73,6 @@ public class ProductService {
 	}
 
 	/**
-	 * Author: farzia
 	 * gets Product count by parm
 	 * @param HashMap
 	 * @return Integer
@@ -82,7 +84,6 @@ public class ProductService {
 	}
 
 	/**
-	 * Author: farzia
 	 * gets Product by id
 	 * @param productID
 	 * @return ProductData
@@ -94,7 +95,6 @@ public class ProductService {
 	}
 
 	/**
-	 * Author: farzia
 	 * counts duplicate Product
 	 * @param HashMap
 	 * @return Integer
