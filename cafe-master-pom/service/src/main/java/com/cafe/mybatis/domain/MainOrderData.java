@@ -1,12 +1,16 @@
 package com.cafe.mybatis.domain;
 
+import org.jasypt.encryption.BigDecimalEncryptor;
+
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 public class MainOrderData {
 	
-	private Integer restaurentID;
+	private Integer restaurantID;
 	private Integer orderID;
 	private Integer userID;
 	private Integer tableID;
@@ -16,15 +20,21 @@ public class MainOrderData {
 	private BigDecimal subtotal;
 	private BigDecimal gst;
 	private BigDecimal total;
+	private BigDecimal discountedAmount;
 	private Date date;
-	private Time time;
-	
-	public Integer getRestaurentID() {
-		return restaurentID;
+	private Timestamp time;
+
+	private List<OrderByProductData> subOrderList;
+
+
+	public Integer getRestaurantID() {
+		return restaurantID;
 	}
-	public void setRestaurentID(Integer restaurentID) {
-		this.restaurentID = restaurentID;
+
+	public void setRestaurantID(Integer restaurantID) {
+		this.restaurantID = restaurantID;
 	}
+
 	public Integer getOrderID() {
 		return orderID;
 	}
@@ -85,12 +95,28 @@ public class MainOrderData {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Time getTime() {
+
+	public Timestamp getTime() {
 		return time;
 	}
-	public void setTime(Time time) {
+
+	public void setTime(Timestamp time) {
 		this.time = time;
 	}
-	
-	
+
+	public BigDecimal getDiscountedAmount() {
+		return discountedAmount;
+	}
+
+	public void setDiscountedAmount(BigDecimal discountedAmount) {
+		this.discountedAmount = discountedAmount;
+	}
+
+	public List<OrderByProductData> getSubOrderList() {
+		return subOrderList;
+	}
+
+	public void setSubOrderList(List<OrderByProductData> subOrderList) {
+		this.subOrderList = subOrderList;
+	}
 }

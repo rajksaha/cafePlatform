@@ -45,32 +45,7 @@ public class ApplicationController extends BaseController {
         return result;
     }
 
-    @RequestMapping(value = {"/application/checkAuthentication/username/{username}/password/{password}"}, method = RequestMethod.GET)
-    @ResponseBody
-    public Map<String, Object> checkAuthentication(@PathVariable("username") String username, @PathVariable("password") String password,HttpServletRequest request) throws BfpbException {
 
-        Map<String, Object> result = new HashMap<String, Object>();
-        result.put("username", username);
-
-        List<UserData> userDataList = this.userService.getUserByParam(result);
-
-        result.clear();
-        if(CollectionUtils.isNotEmpty(userDataList)){
-            UserData userData = userDataList.get(0);
-            if(userData.getPassword().equals(password)){
-                //CafeUserDetail cafeUserDetail = new CafeUserDetail();
-                //cafeUserDetail.setLoggedInUserdata(userData);
-                result.put("status", true);
-            }else{
-                result.put("status", false);
-                result.put("message", "Password Is Now Correct");
-            }
-        }else{
-            result.put("status", false);
-            result.put("message", "Username does not exist");
-        }
-        return result;
-    }
 
 
 }

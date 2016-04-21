@@ -20,7 +20,7 @@
     <div class="col-md-6 col-lg-6" >
         <div class="form-group">
             <label>Waiter<span class="text-red">*</span></label>
-            <select class="form-control input-sm required" data-ng-model="mainOrder.userID" data-ng-options="waiter.userID as waiter.name for waiter  in waiterList">
+            <select class="form-control input-sm required" data-ng-model="mainOrder.waiterID" data-ng-options="waiter.userID as waiter.name for waiter  in waiterList">
                 <option value="">--Select--</option>
             </select>
             <div class="validationErrMsg small text-danger mt-5 hidden"></div>
@@ -40,12 +40,12 @@
             <th width="8%">Sl</th>
             <th>Product Name</th>
             <th>Qnt</th>
-            <th>Price</th>
+            <th>Unit Price</th>
             <th width="10%">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr data-ng-repeat="orderByProduct in mainOrder.orderByProductList">
+        <tr data-ng-repeat="orderByProduct in mainOrder.subOrderList">
             <td>{{$index + 1}}</td>
             <td>
                 <input type="text" data-ng-model="orderByProduct.productID" typeahead="productList.name for productList in getProductName($viewValue)"  class="form-control required" placeholder="Add Products" typeahead-on-select='onSelectProductName($item, $model, $label, orderByProduct)'/>
@@ -67,30 +67,30 @@
             </td>
         </tr>
 
-        <tr data-ng-if="mainOrder.orderByProductList.length > 0">
+        <tr data-ng-if="mainOrder.netAmount > 0">
             <th></th>
             <th></th>
             <th>Net Amount : </th>
             <th>{{mainOrder.netAmount | currency :''}}</th>
             <th></th>
         </tr>
-        <tr data-ng-if="mainOrder.orderByProductList.length > 0 && cafeData.useGst">
+        <tr data-ng-if="mainOrder.subtotal > 0 && cafeData.useGst">
             <th></th>
             <th></th>
-            <th>GST {{cafeData.gstRate}} : {{mainOrder.gstRate}}</th>
-            <th>{{mainOrder.subTotal | currency :''}} </th>
+            <th>GST {{cafeData.gstRate}} : {{mainOrder.gst}}</th>
+            <th>{{mainOrder.subtotal | currency :''}} </th>
             <th></th>
         </tr>
-        <tr data-ng-if="mainOrder.orderByProductList.length > 0">
+        <tr data-ng-if="mainOrder.total > 0">
             <th></th>
             <th></th>
             <th>
                 <label>
                     Discount : {{mainOrder.discountedAmount | currency :''}}
                 </label>
-                <select class="form-control input-sm" data-ng-model="mainOrder.discount" data-ng-change="calculateDiscount(mainOrder, mainOrder.subTotal)" >
+                <select class="form-control input-sm" data-ng-model="mainOrder.discount" data-ng-change="calculateDiscount(mainOrder, mainOrder.subtotal)" >
                     <option value="">--Select--</option>
-                    <option value=".5">5%</option>
+                    <option value=".05">5%</option>
                     <option value=".10">10%</option>
                     <option value=".15">15%</option>
                 </select>
