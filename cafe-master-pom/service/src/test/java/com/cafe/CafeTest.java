@@ -1,8 +1,12 @@
 package com.cafe;
 
+import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.RestaurantData;
 import com.cafe.service.RestaurantService;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
+
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
@@ -11,16 +15,16 @@ import java.math.BigDecimal;
  */
 public class CafeTest extends BaseTest {
 
-    /*RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
+    RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
 
 
-    //@Ignore
-    @Test
-    public void save()  {
+    public Integer save(String name, Integer useGst, Double gst) throws CafeException{
         RestaurantData restaurantData = new RestaurantData();
-        restaurantData.setRestaurantName("Raj's cafe");
-        restaurantData.setUseGst(1);
-        restaurantData.setGstRate(BigDecimal.valueOf(0.15));
-        //restaurantService.create(restaurantData);
-    }*/
+        restaurantData.setRestaurantName(name);
+        restaurantData.setUseGst(useGst);
+        restaurantData.setGstRate(BigDecimal.valueOf(gst));
+        restaurantService.create(restaurantData);
+        
+        return restaurantData.getRestaurantID();
+    }
 }
