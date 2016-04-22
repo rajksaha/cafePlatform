@@ -2,7 +2,7 @@ package com.cafe.mybatis.domain;
 
 import java.math.BigDecimal;
 
-public class OrderByProductData {
+public class OrderByProductData extends ProductData{
 	
 	private Integer orderByProductID;
 	private Integer orderID;

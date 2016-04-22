@@ -22,7 +22,7 @@ public class ProductTestCase extends BaseTest{
 		productData.setName("Cake");
 		productData.setPrice(BigDecimal.valueOf(5.5));
 		productData.setRestaurantID(1);
-		//productData.setCost(BigDecimal.valueOf(5.5));
+		productData.setCost(BigDecimal.valueOf(5.5));
 		
 		try {
 			productService.create(productData);

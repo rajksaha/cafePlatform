@@ -342,6 +342,68 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
         }
     };
 
+    var reportSetup = {
+        name  : 'root.reportSetup',
+        url   : '/reportSetup',
+        views : {
+            'container@' : {
+                templateUrl : 'resources/javascript/templates/reportSetup.html',
+                controller : 'ReportSetupController'
+            }
+        },
+        resolve : {
+            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/controllers/reportSetupController.js' + jsVersion
+                        ]
+                    });
+            }],
+            loadMyService: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/services/reportSetupService.js' + jsVersion
+                        ]
+                    });
+            }]
+        }
+    };
+
+    var tableStatus = {
+        name  : 'root.tableStatus',
+        url   : '/tableStatus',
+        views : {
+            'container@' : {
+                templateUrl : 'resources/javascript/templates/tableStatus.html',
+                controller : 'TableStatusController'
+            }
+        },
+        resolve : {
+            loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/controllers/tableStatusController.js' + jsVersion
+                        ]
+                    });
+            }],
+            loadMyService: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load(
+                    {
+                        name: 'bfpbApp',
+                        files: [
+                            'resources/javascript/services/reportSetupService.js' + jsVersion
+                        ]
+                    });
+            }]
+        }
+    };
+
     $stateProvider
         .state(root)
         .state(login)
@@ -352,7 +414,9 @@ app.config(function($stateProvider, $urlRouterProvider, $compileProvider, $contr
         .state(userSetup)
         .state(productSetup)
         .state(placeOrder)
-        .state(tableSetup);
+        .state(tableSetup)
+        .state(reportSetup)
+        .state(tableStatus);
 
     //set debug:true if need ocLazyLoad log
 	$ocLazyLoadProvider.config({debug:false, events:true});

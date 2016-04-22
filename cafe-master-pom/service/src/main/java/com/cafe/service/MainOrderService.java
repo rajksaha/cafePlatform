@@ -105,7 +105,14 @@ public class MainOrderService {
 
 
 	    public List<MainOrderData> getMainOrderByParam(Map<String, Object> params) throws CafeException {
-	        return this.mainOrderMapper.getMainOrderByParam(params);
+
+			List<MainOrderData> mainOrderList = this.mainOrderMapper.getMainOrderByParam(params);
+			for(MainOrderData mainOrder : mainOrderList){
+				params.put("orderID", mainOrder.getOrderID());
+				List<OrderByProductData> orderByProductList = this.orderByProductMapper.getOrderByProductByParam(params);
+				mainOrder.setSubOrderList(orderByProductList);
+			}
+	        return mainOrderList;
 	    }
 
 	    /**

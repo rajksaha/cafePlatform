@@ -37,8 +37,8 @@ app.controller('PlaceOrderController', function($scope, $rootScope, $location, $
         if(validator.validateForm("#validationRequired",".validatorMsg",null)) {
 
             PlaceOrderService.save.query({}, mainOrder ).$promise.then(function(result) {
-                $scope.showSuccessMessage("Sector " + sector.sectorName + " saved successfully");
-                $scope.init();
+                //$scope.showSuccessMessage("Sector " + sector.sectorName + " saved successfully");
+                $state.go('root.tableStatus');
                 $scope.showForm = false;
             });
         }

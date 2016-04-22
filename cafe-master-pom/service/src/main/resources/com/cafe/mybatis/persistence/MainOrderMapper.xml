@@ -58,11 +58,32 @@
 	</select>
 
 	<select id="getMainOrderByParam" parameterType="map" resultType="MainOrder">
-		SELECT `restaurantID`, `orderID`, `userID`, `tableID`, `waiterID`, `netAmount`, `discount`, `subtotal`, `gst`, `total`, `date`, `time` 
-		FROM `main_order` 
-		WHERE 1
+		SELECT
+			`restaurantID`,
+			`orderID`,
+			`userID`,
+			`tableID`,
+			`waiterID`,
+			`netAmount`,
+			`discount`,
+			`subtotal`,
+			`gst`,
+			`total`,
+		  `date`,
+			`time`
+		FROM `main_order`
+		WHERE 1 = 1
+		<if test="startDate != null">
+			AND date between DATE (#{startDate}) AND DATE (#{endDate})
+		</if>
 		<if test="orderID != null">
 			AND orderID = #{orderID}
+		</if>
+		<if test="userID != null">
+			AND userID = #{userID}
+		</if>
+		<if test="restaurantID != null">
+			AND restaurantID = #{restaurantID}
 		</if>
         <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
             ORDER BY ${sortColumn} ${sortOrder}

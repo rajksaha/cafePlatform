@@ -1,0 +1,78 @@
+<div class="large big" id="testModal">
+
+    <div class='modal-header modalHead'>
+        <h4 class='modal-title'>Order Detail</h4>
+    </div>
+
+    <div class='modal-body'>
+        <div class="row">
+
+
+            <table class="table table-bordered table-condensed table-striped table-hover fams-table">
+                <thead>
+                <tr class="bg-primary">
+                    <th width="8%">Sl</th>
+                    <th>Product Name</th>
+                    <th>Qnt</th>
+                    <th>Unit Price</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="orderByProduct in mainOrder.subOrderList">
+                    <td>{{$index + 1}}</td>
+                    <td>
+                        <label> {{orderByProduct.name}}</label>
+                    </td>
+                    <td>
+                        <label> {{orderByProduct.quantity}}</label>
+                    </td>
+                    <td>{{orderByProduct.price}} RM</td>
+                    <td>{{orderByProduct.price * orderByProduct.quantity}} RM</td>
+                </tr>
+
+                <tr data-ng-if="mainOrder.netAmount > 0">
+                    <th></th>
+                    <th></th>
+                    <th>Net Amount : </th>
+                    <th>{{mainOrder.netAmount | currency :''}}</th>
+                    <th></th>
+                </tr>
+                <tr >
+                    <th></th>
+                    <th></th>
+                    <th>GST  : {{mainOrder.gst}}</th>
+                    <th>{{mainOrder.subtotal | currency :''}} </th>
+                    <th></th>
+                </tr>
+                <tr >
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <label>
+                            Discount :
+                        </label>
+                    </th>
+                    <th> {{mainOrder.discount}}%</th>
+                </tr>
+                <tr >
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <label>
+                            Total :
+                        </label>
+                    </th>
+                    <th> {{mainOrder.total | currency :''}}</th>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+    <div class="modal-footer modalFoot">
+        <button class="btn btn-danger btnLanier" ng-click="close()"><i class="fa fa-close"></i> Cancel</button>
+    </div>
+</div>

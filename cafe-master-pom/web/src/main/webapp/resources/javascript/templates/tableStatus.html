@@ -1,0 +1,30 @@
+<div class="panel panel-default mt-15" >
+    <div class="panel-heading clearfix">
+        <strong>Main order List</strong>
+    </div>
+
+    <table class="table table-bordered table-condensed table-striped table-hover fams-table">
+        <thead>
+        <tr class="bg-primary">
+            <th width="8%">Sl</th>
+            <th>Date</th>
+            <th>Net Amount</th>
+            <th>Sub Total</th>
+            <th>Total</th>
+            <th width="10%">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="mainOrder in mainOrderList">
+            <td>{{$index + 1}}</td>
+            <td>{{mainOrder.date | date:'dd/MM/yy'}}</td>
+            <td>{{mainOrder.netAmount | currency :''}}</td>
+            <td>{{mainOrder.subtotal | currency :''}}</td>
+            <td>{{mainOrder.total | currency :''}}</td>
+            <td >
+                <a href="" class="clearfix" data-ng-click="edit(mainOrder)"><span class="fa fa-pencil-square-o"></span> View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

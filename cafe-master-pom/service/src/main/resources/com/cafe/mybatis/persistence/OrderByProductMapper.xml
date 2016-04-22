@@ -37,25 +37,23 @@
 	</select>
 
 	<select id="getOrderByProductByParam" parameterType="map" resultType="OrderByProduct">
-		SELECT `orderByProductID`, `orderID`, `productID`, `quantity`, `price`
-		FROM `order_by_product`
+		SELECT obp.`orderByProductID`, obp.`orderID`, obp.`productID`, obp.`quantity`, obp.`price`, p.name
+		FROM `order_by_product` obp
+		JOIN product p ON obp.productID = p.productID
 		WHERE 1 = 1
 		<if test="orderByProductID != null">
-			AND orderByProductID = #{orderByProductID}
+			AND obp.orderByProductID = #{orderByProductID}
 		</if>
-        <if test="divisionName != null">
-            AND LOWER(DIVISION_NAME) LIKE LOWER(CONCAT('%',#{divisionName},'%'))
-        </if>
-        <if test="offset != null and limit != null and sortColumn != null and sortOrder != null">
-            ORDER BY ${sortColumn} ${sortOrder}
-            LIMIT #{limit} OFFSET #{offset}
-        </if>
+		<if test="orderID != null">
+			AND obp.orderID = #{orderID}
+		</if>
+
 	</select>
 
     <select id="getOrderByProductCountByParam" parameterType="map" resultType="int">
         SELECT `orderByProductID`, `orderID`, `productID`, `quantity`, `price` 
         FROM `order_by_product` 
-        WHERE 1
+        WHERE 1 = 1
         <if test="orderByProductID != null">
             AND orderByProductID = #{orderByProductID}
         </if>
