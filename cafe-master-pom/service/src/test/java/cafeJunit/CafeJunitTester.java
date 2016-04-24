@@ -2,12 +2,12 @@ package cafeJunit;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
-import org.springframework.test.context.transaction.BeforeTransaction;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe.BaseTest;
-import com.cafe.CafeTest;
+
 import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.RestaurantData;
 import com.cafe.service.RestaurantService;
@@ -16,20 +16,27 @@ public class CafeJunitTester extends BaseTest{
 	
 	static Integer id = null;
 	static String name = "Test cafe";
-	
+		
 	RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
 
-	CafeTest cafeTest = new  CafeTest();
-	
-	@Transactional
+		
+	@Test
 	public void testCreateCafe() throws CafeException{
-         id = cafeTest.save(name, 1, .05);
+         id = this.save(this.name, 1, .05);
     	assertNotNull(id);
 	}
-	@BeforeTransaction
-	public void getCafe() throws CafeException{
+	@Test 
+	public void getRestaurantByIdTest() throws CafeException{
 		
 		RestaurantData data = restaurantService.getRestaurantByID(id);
+		assertNotNull(data);
+		
+	}
+	@Test
+	public void testUpdateCafe() throws CafeException{
+		RestaurantData data= restaurantService.getRestaurantByID(id);
+		//data.setUseGst(0);
+		restaurantService.update(data);
 		assertNotNull(data);
 		
 	}
@@ -50,6 +57,15 @@ public class CafeJunitTester extends BaseTest{
 		CafeJunitTester.name = name;
 	}
 	
+	 private Integer save(String name, Integer useGst, Double gst) throws CafeException{
+	        RestaurantData restaurantData = new RestaurantData();
+	        restaurantData.setRestaurantName(name);
+	        restaurantData.setUseGst(useGst);
+	        restaurantData.setGstRate(BigDecimal.valueOf(gst));
+	        restaurantService.create(restaurantData);
+	        
+	        return restaurantData.getRestaurantID();
+	    }
 	
 	
 

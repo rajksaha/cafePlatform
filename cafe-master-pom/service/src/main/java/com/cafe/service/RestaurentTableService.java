@@ -85,7 +85,7 @@ public class RestaurentTableService {
 		 * @throws CafeException
 		 **/
 
-	    public RestaurantTableData getWaiterByID(Integer tableID) throws CafeException {
+	    public RestaurantTableData getRestaurantTableByID(Integer tableID) throws CafeException {
 	        return this.restaurentTableMapper.getRestaurantTableByID(tableID);
 	    }
 
