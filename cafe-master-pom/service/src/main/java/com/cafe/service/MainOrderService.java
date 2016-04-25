@@ -1,6 +1,7 @@
 package com.cafe.service;
 
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -110,6 +111,11 @@ public class MainOrderService {
 			for(MainOrderData mainOrder : mainOrderList){
 				params.put("orderID", mainOrder.getOrderID());
 				List<OrderByProductData> orderByProductList = this.orderByProductMapper.getOrderByProductByParam(params);
+				BigDecimal costSum = BigDecimal.ZERO;
+				for(OrderByProductData subOrder : orderByProductList){
+					costSum = costSum.add(subOrder.getCost());
+				}
+				mainOrder.setNetCost(costSum);
 				mainOrder.setSubOrderList(orderByProductList);
 			}
 	        return mainOrderList;

@@ -16,6 +16,7 @@ public class MainOrderData {
 	private Integer tableID;
 	private Integer waiterID;
 	private BigDecimal netAmount;
+	private BigDecimal netCost;
 	private BigDecimal discount;
 	private BigDecimal subtotal;
 	private BigDecimal gst;
@@ -118,5 +119,13 @@ public class MainOrderData {
 
 	public void setSubOrderList(List<OrderByProductData> subOrderList) {
 		this.subOrderList = subOrderList;
+	}
+
+	public BigDecimal getNetCost() {
+		return netCost;
+	}
+
+	public void setNetCost(BigDecimal netCost) {
+		this.netCost = netCost;
 	}
 }

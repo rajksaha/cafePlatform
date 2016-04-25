@@ -22,6 +22,16 @@ app.controller('ReportSetupController', function($scope, $rootScope, $location, 
 
         ReportSetupService.getAll.query({}, $scope.searchData ).$promise.then(function(result) {
             $scope.mainOrderList = result;
+
+            $scope.totalNetAmount = 0;
+            $scope.totalNetCost = 0;
+            $scope.totalProfit = 0;
+            angular.forEach($scope.mainOrderList, function(value, key) {
+                $scope.totalNetAmount = $scope.totalNetAmount + parseInt(value.netAmount);
+                $scope.totalNetCost = $scope.totalNetCost + parseInt(value.netCost);
+            });
+            $scope.totalProfit = $scope.totalNetAmount - $scope.totalNetCost;
+
         });
     };
 

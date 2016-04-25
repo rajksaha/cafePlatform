@@ -18,7 +18,7 @@ import com.cafe.service.ProductService;
 public class ProductTestCase extends BaseTest{
 
 	
-	static Integer id = null;
+	/*static Integer id = null;
 	ProductService productService = applicationContext.getBean(ProductService.class);
 	
 	@Test
@@ -46,6 +46,6 @@ public class ProductTestCase extends BaseTest{
 		Map<String,Object> param = new HashMap<>();
 		param.put("productID", id);
 		productService.delete(param);
-	}
+	}*/
 
 }

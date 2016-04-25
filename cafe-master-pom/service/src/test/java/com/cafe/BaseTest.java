@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 public class BaseTest {
 
-    public static final String DBCP_DS = "testDS";
+    /*public static final String DBCP_DS = "testDS";
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
     protected static ApplicationContext testContext = new ClassPathXmlApplicationContext("app-context-test.xml");
     protected static ApplicationContext applicationContext = null;
@@ -36,6 +36,6 @@ public class BaseTest {
         DataSource ds = (DataSource) BaseTest.testContext.getBean(dataSourceBeanId);
         SimpleNamingContextBuilder builder = SimpleNamingContextBuilder.emptyActivatedContextBuilder();
         builder.bind("java:/comp/env/jdbc/appDB", ds);
-    }
+    }*/
 
 }

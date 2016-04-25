@@ -20,7 +20,7 @@ import com.cafe.service.RestaurantService;
 
 public class CafeJunitTester extends BaseTest{
 	
-	static Integer id = null;
+	/*static Integer id = null;
 	static String name = "Test cafe";
 		
 	RestaurantService restaurantService = applicationContext.getBean(RestaurantService.class);
@@ -71,7 +71,7 @@ public class CafeJunitTester extends BaseTest{
 	        restaurantService.create(restaurantData);
 	        
 	        return restaurantData.getRestaurantID();
-	    }
+	    }*/
 	
 	
 

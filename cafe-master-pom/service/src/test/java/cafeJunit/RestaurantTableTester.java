@@ -22,7 +22,7 @@ import com.cafe.service.RestaurentTableService;
 
 public class RestaurantTableTester extends BaseTest {
 	
-	static Integer id = null;
+	/*static Integer id = null;
 	
 	RestaurentTableService tableService = applicationContext.getBean(RestaurentTableService.class);
 	
@@ -54,7 +54,7 @@ public class RestaurantTableTester extends BaseTest {
 		Map<String,Object> param = new HashMap<>();
 		param.put("tableID", id);
 		tableService.delete(param);
-	}
+	}*/
 	
 	
 

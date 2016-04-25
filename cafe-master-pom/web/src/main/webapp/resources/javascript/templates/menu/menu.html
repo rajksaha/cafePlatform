@@ -11,9 +11,9 @@
     <div data-ng-if="userData.level ==0 || userData.level == 1">
         <a  class="list-group-item" data-ng-click="showMenu(0)"><i class="fa fa-user-plus"></i><i class="fa fa-angle-down-right"></i> Management</a>
         <div class="bfpb-sub-menu" data-ng-show="isCollapse[0]">
+            <a href="#/restaurantSetup" data-ng-if="userData.level ==0" class="list-group-item"><i class="fa fa-caret-right"></i>Add Restaurant</a>
             <a href="#/userSetup" class="list-group-item"><i class="fa fa-caret-right"></i> Add Users</a>
             <a href="#/reportSetup" class="list-group-item"><i class="fa fa-caret-right"></i> Report</a>
-            <a href="#/restaurantSetup" data-ng-if="userData.level ==0" class="list-group-item"><i class="fa fa-caret-right"></i> Restaurant</a>
         </div>
     </div>
 

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -17,7 +18,7 @@ import com.cafe.service.UserService;
 
 public class UserJunit extends BaseTest{
 	
-	UserService userService = applicationContext.getBean(UserService.class);
+	/*UserService userService = applicationContext.getBean(UserService.class);
 	
 	static String userName = "honeySing1";
 	static String password = "honeySing1";
@@ -38,6 +39,7 @@ public class UserJunit extends BaseTest{
 		
 	}
 	
+	@Ignore
 	@Test
 	public void userLoginTest()throws CafeException{
 		
@@ -46,12 +48,13 @@ public class UserJunit extends BaseTest{
 		
 	}
 	
+	@Ignore
 	@Test
 	public void deteteUser() throws CafeException {
 		Map<String,Object> param = new HashMap<>();
 		param.put("userID", id);
 		userService.delete(param);
-	}
+	}*/
 	
 
 }

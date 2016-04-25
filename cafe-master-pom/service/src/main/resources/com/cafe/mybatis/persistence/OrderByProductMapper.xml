@@ -37,7 +37,7 @@
 	</select>
 
 	<select id="getOrderByProductByParam" parameterType="map" resultType="OrderByProduct">
-		SELECT obp.`orderByProductID`, obp.`orderID`, obp.`productID`, obp.`quantity`, obp.`price`, p.name
+		SELECT obp.`orderByProductID`, obp.`orderID`, obp.`productID`, obp.`quantity`, obp.`price`, p.name, p.cost
 		FROM `order_by_product` obp
 		JOIN product p ON obp.productID = p.productID
 		WHERE 1 = 1

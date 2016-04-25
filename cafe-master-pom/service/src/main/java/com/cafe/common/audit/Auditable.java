@@ -1,7 +1,7 @@
 package com.cafe.common.audit;
 
 /**
- * Created by mamun on 1/25/16.
+ * Created by raj on 1/25/16.
  */
 public interface Auditable {
 
