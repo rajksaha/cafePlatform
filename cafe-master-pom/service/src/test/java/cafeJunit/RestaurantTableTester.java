@@ -2,6 +2,7 @@ package cafeJunit;
 
 import static org.junit.Assert.assertNotNull;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,11 @@ import com.cafe.BaseTest;
 import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.RestaurantTableData;
 import com.cafe.service.RestaurentTableService;
+
+
+/**
+ * * @author Frzia
+ * **/
 
 public class RestaurantTableTester extends BaseTest {
 	

@@ -12,6 +12,12 @@ import com.cafe.common.exception.CafeException;
 import com.cafe.mybatis.domain.RestaurantData;
 import com.cafe.service.RestaurantService;
 
+/**
+ * * @author Frzia
+ * **/
+ 
+
+
 public class CafeJunitTester extends BaseTest{
 	
 	static Integer id = null;
