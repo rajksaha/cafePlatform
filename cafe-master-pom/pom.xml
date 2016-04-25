@@ -17,7 +17,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
-				<module>utility</module>
+				<!-- <module>utility</module> -->
 				<module>service</module>
 				<module>content</module>
 				<module>web</module>
