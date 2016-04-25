@@ -12,13 +12,13 @@
 		</div>
 	</div>
 </div>
-<div class="search clearfix">
+<div class="search clearfix" data-ng-show="userData.userID != null">
 	<div class="container">
-		<div class="pull-left" data-ng-show="userData.userID != null">
+		<div class="pull-left" >
 			Restaurant : {{userData.restaurantName}}
 		</div>
 		<div class="pull-right">
-			<div data-ng-show="userData.userID != null">Welcome {{userData.name}}	 |	<a class="pointer" data-ng-click="logout()">Logout</a>  | <a class="pointer" data-ng-click="home()">Home</a> </div>
+			<div >Welcome {{userData.name}}	 |	<a class="pointer" data-ng-click="logout()">Logout</a>  | <a class="pointer" data-ng-click="home()">Home</a> </div>
 		</div>
 	</div>
 </div>
