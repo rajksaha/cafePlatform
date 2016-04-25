@@ -47,13 +47,17 @@
 	</select>
 
 	<select id="getUserByUserName" parameterType="string" resultType="UserData">
-		SELECT `userID`,
-		`restaurantID`,
-		`level`,
-		`name`,
-		`username`,
-		`password`
-		FROM `user` WHERE username = #{username};
+		SELECT
+			u.`userID`,
+			u.`restaurantID`,
+			u.`level`,
+			u.`name`,
+			u.`username`,
+			u.`password`,
+			r.restaurantName
+		FROM `user` u
+		LEFT JOIN restaurant r ON u.restaurantID = r.restaurantID
+		WHERE username = #{username};
 	</select>
 
 	<select id="getUserByParam" parameterType="map" resultType="UserData">

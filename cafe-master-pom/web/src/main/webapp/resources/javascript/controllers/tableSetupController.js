@@ -17,6 +17,8 @@ app.controller('TableSetupController', function($scope, $rootScope, $state, $htt
     };
 
 
+
+
     //reloading the grid
     $scope.reloadList = false;
     $scope.refreshList = function () {

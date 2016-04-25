@@ -94,6 +94,15 @@ app.controller('ReportSetupController', function($scope, $rootScope, $location, 
         $scope.hasSuccess = false;
     };
 
+    $scope.getTotalSale = function(mainOrderList){
+
+        var sum = 0;
+        angular.forEach(mainOrderList, function(value, key) {
+            sum = sum + value.total;
+        });
+        return sum;
+    };
+
 
     $scope.edit = function(mainOrder){
 

@@ -25,6 +25,15 @@ app.controller('TableStatusController', function($scope, $rootScope, $location, 
         });
     };
 
+    $scope.getTotalSale = function(mainOrderList){
+
+        var sum = 0;
+        angular.forEach(mainOrderList, function(value, key) {
+            sum = sum + value.total;
+        });
+        return sum;
+    };
+
     // column definition
     $scope.columnDefinition = [
         {columnHeaderDisplayName: 'SL', displayProperty: 'serial', width: '4em'},

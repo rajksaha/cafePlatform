@@ -1,3 +1,4 @@
+<strong>Report</strong>
 <div class="panel-footer">
     <div class="col-md-4 col-lg-4 col-sm-4">
         <input type="text"  data-ng-model="searchData.entityStartDate" class="form-control form-control-date input-sm" ng-class="{'required':fieldData.isRequire == 1}" maxlength="100"
@@ -7,14 +8,14 @@
         <input type="text"  data-ng-model="searchData.entityEndDate" class="form-control form-control-date input-sm" ng-class="{'required':fieldData.isRequire == 1}" maxlength="100"
                datepicker-popup="dd/MM/yyyy" close-text="Close" is_open="dt2" ng-focus="dt2 = true" ng-click="dt2 = true" >
     </div>
-    <div class="col-md-3 col-lg-3 col-sm-3">
+    <!--<div class="col-md-3 col-lg-3 col-sm-3">
         <select data-ng-model="searchData.entityID" class="form-control input-sm">
-            <option value=""> --Select--</option>
+            <option value=""> &#45;&#45;Select&#45;&#45;</option>
             <option value="USER">Manager</option>
             <option value="USER">Waiter</option>
             <option value="PRODUCT">Product</option>
         </select>
-    </div>
+    </div>-->
     <div class="col-md-1 col-lg-1 col-sm-1">
         <button class="btn btn-sm btn-warning" data-ng-click="search()"><span class="fa fa-undo"></span> Search</button>
     </div>
@@ -47,6 +48,16 @@
                 <a href="" class="clearfix" data-ng-click="edit(mainOrder)"><span class="fa fa-pencil-square-o"></span> View</a>
             </td>
         </tr>
+        <tr >
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total Sale: </td>
+            <td>{{getTotalSale(mainOrderList) | currency :''}}</td>
+            <td >
+            </td>
+        </tr>
         </tbody>
+
     </table>
 </div>
